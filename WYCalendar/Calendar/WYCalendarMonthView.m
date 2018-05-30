@@ -11,10 +11,10 @@
 #import "UIView+WYCategory.h"
 @implementation WYCalendarMonthView
 {
-    UILabel * _titleLabel;             
+    UILabel * _titleLabel;
     
     dispatch_block_t _leftBlock;        //点击左按钮的回调
-
+    
     dispatch_block_t _rightBlock;       //点击右按钮的回调
     
     /**
@@ -107,17 +107,17 @@
         
     } color:nil];
     
-    [leftButton setImage:[UIImage imageNamed:@"arrow_left" inBundle:[NSBundle bundleWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"WYIcons.bundle"]] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"arrow_left" inBundle:[NSBundle bundleWithPath:[[[NSBundle bundleForClass:[WYCalendarTool class]] resourcePath] stringByAppendingPathComponent:@"WYIcons.bundle"]] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
     
     UIButton * rightButton = [UIButton initWithFrame:CGRectMake(self.Width - _monthButtonWidth - _monthSpace, self.Height/2 - _monthButtonWidth/2, _monthButtonWidth, _monthButtonWidth) title:nil fontSize:0 buttonAction:^(id sender) {
-
+        
         WYST(strongSelf)
         
         if (strongSelf->_rightBlock) strongSelf->_rightBlock();
         
     } color:nil];
     
-    [rightButton setImage:[UIImage imageNamed:@"arrow_right" inBundle:[NSBundle bundleWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"WYIcons.bundle"]] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+    [rightButton setImage:[UIImage imageNamed:@"arrow_right" inBundle:[NSBundle bundleWithPath:[[[NSBundle bundleForClass:[WYCalendarTool class]] resourcePath] stringByAppendingPathComponent:@"WYIcons.bundle"]] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
     
     _titleLabel = [WYCalendarTool initLabelWithFrame:self.bounds text:@"" fontSize:_monthFontSize textColor:_monthColor aliment:NSTextAlignmentCenter];
     
