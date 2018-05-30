@@ -1,0 +1,630 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CFEDEA7120BEB636003BB357 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEA7020BEB636003BB357 /* AppDelegate.m */; };
+		CFEDEA7420BEB636003BB357 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEA7320BEB636003BB357 /* ViewController.m */; };
+		CFEDEA7720BEB636003BB357 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFEDEA7520BEB636003BB357 /* Main.storyboard */; };
+		CFEDEA7920BEB638003BB357 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFEDEA7820BEB638003BB357 /* Assets.xcassets */; };
+		CFEDEA7C20BEB638003BB357 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFEDEA7A20BEB638003BB357 /* LaunchScreen.storyboard */; };
+		CFEDEA7F20BEB638003BB357 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEA7E20BEB638003BB357 /* main.m */; };
+		CFEDEA8920BEB638003BB357 /* WYCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEA8820BEB638003BB357 /* WYCalendarTests.m */; };
+		CFEDEA9420BEB638003BB357 /* WYCalendarUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEA9320BEB638003BB357 /* WYCalendarUITests.m */; };
+		CFEDEAB720BEB6FC003BB357 /* WYCalendarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEAAC20BEB6FC003BB357 /* WYCalendarHeaderView.m */; };
+		CFEDEAB820BEB6FC003BB357 /* WYCalendarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEAAE20BEB6FC003BB357 /* WYCalendarCollectionViewCell.m */; };
+		CFEDEAB920BEB6FC003BB357 /* WYIcons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CFEDEAAF20BEB6FC003BB357 /* WYIcons.bundle */; };
+		CFEDEABA20BEB6FC003BB357 /* WYCalendarMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEAB120BEB6FC003BB357 /* WYCalendarMonthView.m */; };
+		CFEDEABB20BEB6FC003BB357 /* UIView+WYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEAB320BEB6FC003BB357 /* UIView+WYCategory.m */; };
+		CFEDEABC20BEB6FC003BB357 /* WYCalendarTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEAB420BEB6FC003BB357 /* WYCalendarTool.m */; };
+		CFEDEABD20BEB6FC003BB357 /* WYCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEAB520BEB6FC003BB357 /* WYCalendarView.m */; };
+		CFEDEABE20BEB6FC003BB357 /* WYCalendarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEAB620BEB6FC003BB357 /* WYCalendarModel.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CFEDEA8520BEB638003BB357 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFEDEA6420BEB636003BB357 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFEDEA6B20BEB636003BB357;
+			remoteInfo = WYCalendar;
+		};
+		CFEDEA9020BEB638003BB357 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFEDEA6420BEB636003BB357 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFEDEA6B20BEB636003BB357;
+			remoteInfo = WYCalendar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CFEDEA6C20BEB636003BB357 /* WYCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFEDEA6F20BEB636003BB357 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CFEDEA7020BEB636003BB357 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CFEDEA7220BEB636003BB357 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		CFEDEA7320BEB636003BB357 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CFEDEA7620BEB636003BB357 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CFEDEA7820BEB638003BB357 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CFEDEA7B20BEB638003BB357 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CFEDEA7D20BEB638003BB357 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFEDEA7E20BEB638003BB357 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CFEDEA8420BEB638003BB357 /* WYCalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WYCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFEDEA8820BEB638003BB357 /* WYCalendarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYCalendarTests.m; sourceTree = "<group>"; };
+		CFEDEA8A20BEB638003BB357 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFEDEA8F20BEB638003BB357 /* WYCalendarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WYCalendarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFEDEA9320BEB638003BB357 /* WYCalendarUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYCalendarUITests.m; sourceTree = "<group>"; };
+		CFEDEA9520BEB638003BB357 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFEDEAA820BEB6FB003BB357 /* WYCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCalendarView.h; sourceTree = "<group>"; };
+		CFEDEAA920BEB6FC003BB357 /* WYCalendarHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCalendarHeaderView.h; sourceTree = "<group>"; };
+		CFEDEAAA20BEB6FC003BB357 /* WYCalendarModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCalendarModel.h; sourceTree = "<group>"; };
+		CFEDEAAB20BEB6FC003BB357 /* WYCalendarTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCalendarTool.h; sourceTree = "<group>"; };
+		CFEDEAAC20BEB6FC003BB357 /* WYCalendarHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCalendarHeaderView.m; sourceTree = "<group>"; };
+		CFEDEAAD20BEB6FC003BB357 /* WYCalendarMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCalendarMonthView.h; sourceTree = "<group>"; };
+		CFEDEAAE20BEB6FC003BB357 /* WYCalendarCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCalendarCollectionViewCell.m; sourceTree = "<group>"; };
+		CFEDEAAF20BEB6FC003BB357 /* WYIcons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WYIcons.bundle; sourceTree = "<group>"; };
+		CFEDEAB020BEB6FC003BB357 /* WYCalendarCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCalendarCollectionViewCell.h; sourceTree = "<group>"; };
+		CFEDEAB120BEB6FC003BB357 /* WYCalendarMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCalendarMonthView.m; sourceTree = "<group>"; };
+		CFEDEAB220BEB6FC003BB357 /* UIView+WYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WYCategory.h"; sourceTree = "<group>"; };
+		CFEDEAB320BEB6FC003BB357 /* UIView+WYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WYCategory.m"; sourceTree = "<group>"; };
+		CFEDEAB420BEB6FC003BB357 /* WYCalendarTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCalendarTool.m; sourceTree = "<group>"; };
+		CFEDEAB520BEB6FC003BB357 /* WYCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCalendarView.m; sourceTree = "<group>"; };
+		CFEDEAB620BEB6FC003BB357 /* WYCalendarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCalendarModel.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CFEDEA6920BEB636003BB357 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFEDEA8120BEB638003BB357 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFEDEA8C20BEB638003BB357 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CFEDEA6320BEB636003BB357 = {
+			isa = PBXGroup;
+			children = (
+				CFEDEA6E20BEB636003BB357 /* WYCalendar */,
+				CFEDEA8720BEB638003BB357 /* WYCalendarTests */,
+				CFEDEA9220BEB638003BB357 /* WYCalendarUITests */,
+				CFEDEA6D20BEB636003BB357 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CFEDEA6D20BEB636003BB357 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CFEDEA6C20BEB636003BB357 /* WYCalendar.app */,
+				CFEDEA8420BEB638003BB357 /* WYCalendarTests.xctest */,
+				CFEDEA8F20BEB638003BB357 /* WYCalendarUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CFEDEA6E20BEB636003BB357 /* WYCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				CFEDEA6F20BEB636003BB357 /* AppDelegate.h */,
+				CFEDEA7020BEB636003BB357 /* AppDelegate.m */,
+				CFEDEA7220BEB636003BB357 /* ViewController.h */,
+				CFEDEA7320BEB636003BB357 /* ViewController.m */,
+				CFEDEAA720BEB6D8003BB357 /* Calendar */,
+				CFEDEA7520BEB636003BB357 /* Main.storyboard */,
+				CFEDEA7820BEB638003BB357 /* Assets.xcassets */,
+				CFEDEA7A20BEB638003BB357 /* LaunchScreen.storyboard */,
+				CFEDEA7D20BEB638003BB357 /* Info.plist */,
+				CFEDEA7E20BEB638003BB357 /* main.m */,
+			);
+			path = WYCalendar;
+			sourceTree = "<group>";
+		};
+		CFEDEA8720BEB638003BB357 /* WYCalendarTests */ = {
+			isa = PBXGroup;
+			children = (
+				CFEDEA8820BEB638003BB357 /* WYCalendarTests.m */,
+				CFEDEA8A20BEB638003BB357 /* Info.plist */,
+			);
+			path = WYCalendarTests;
+			sourceTree = "<group>";
+		};
+		CFEDEA9220BEB638003BB357 /* WYCalendarUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CFEDEA9320BEB638003BB357 /* WYCalendarUITests.m */,
+				CFEDEA9520BEB638003BB357 /* Info.plist */,
+			);
+			path = WYCalendarUITests;
+			sourceTree = "<group>";
+		};
+		CFEDEAA720BEB6D8003BB357 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				CFEDEAB220BEB6FC003BB357 /* UIView+WYCategory.h */,
+				CFEDEAB320BEB6FC003BB357 /* UIView+WYCategory.m */,
+				CFEDEAB020BEB6FC003BB357 /* WYCalendarCollectionViewCell.h */,
+				CFEDEAAE20BEB6FC003BB357 /* WYCalendarCollectionViewCell.m */,
+				CFEDEAA920BEB6FC003BB357 /* WYCalendarHeaderView.h */,
+				CFEDEAAC20BEB6FC003BB357 /* WYCalendarHeaderView.m */,
+				CFEDEAAA20BEB6FC003BB357 /* WYCalendarModel.h */,
+				CFEDEAB620BEB6FC003BB357 /* WYCalendarModel.m */,
+				CFEDEAAD20BEB6FC003BB357 /* WYCalendarMonthView.h */,
+				CFEDEAB120BEB6FC003BB357 /* WYCalendarMonthView.m */,
+				CFEDEAAB20BEB6FC003BB357 /* WYCalendarTool.h */,
+				CFEDEAB420BEB6FC003BB357 /* WYCalendarTool.m */,
+				CFEDEAA820BEB6FB003BB357 /* WYCalendarView.h */,
+				CFEDEAB520BEB6FC003BB357 /* WYCalendarView.m */,
+				CFEDEAAF20BEB6FC003BB357 /* WYIcons.bundle */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CFEDEA6B20BEB636003BB357 /* WYCalendar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFEDEA9820BEB638003BB357 /* Build configuration list for PBXNativeTarget "WYCalendar" */;
+			buildPhases = (
+				CFEDEA6820BEB636003BB357 /* Sources */,
+				CFEDEA6920BEB636003BB357 /* Frameworks */,
+				CFEDEA6A20BEB636003BB357 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WYCalendar;
+			productName = WYCalendar;
+			productReference = CFEDEA6C20BEB636003BB357 /* WYCalendar.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CFEDEA8320BEB638003BB357 /* WYCalendarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFEDEA9B20BEB638003BB357 /* Build configuration list for PBXNativeTarget "WYCalendarTests" */;
+			buildPhases = (
+				CFEDEA8020BEB638003BB357 /* Sources */,
+				CFEDEA8120BEB638003BB357 /* Frameworks */,
+				CFEDEA8220BEB638003BB357 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CFEDEA8620BEB638003BB357 /* PBXTargetDependency */,
+			);
+			name = WYCalendarTests;
+			productName = WYCalendarTests;
+			productReference = CFEDEA8420BEB638003BB357 /* WYCalendarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CFEDEA8E20BEB638003BB357 /* WYCalendarUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFEDEA9E20BEB638003BB357 /* Build configuration list for PBXNativeTarget "WYCalendarUITests" */;
+			buildPhases = (
+				CFEDEA8B20BEB638003BB357 /* Sources */,
+				CFEDEA8C20BEB638003BB357 /* Frameworks */,
+				CFEDEA8D20BEB638003BB357 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CFEDEA9120BEB638003BB357 /* PBXTargetDependency */,
+			);
+			name = WYCalendarUITests;
+			productName = WYCalendarUITests;
+			productReference = CFEDEA8F20BEB638003BB357 /* WYCalendarUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CFEDEA6420BEB636003BB357 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "王勇";
+				TargetAttributes = {
+					CFEDEA6B20BEB636003BB357 = {
+						CreatedOnToolsVersion = 9.3.1;
+					};
+					CFEDEA8320BEB638003BB357 = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = CFEDEA6B20BEB636003BB357;
+					};
+					CFEDEA8E20BEB638003BB357 = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = CFEDEA6B20BEB636003BB357;
+					};
+				};
+			};
+			buildConfigurationList = CFEDEA6720BEB636003BB357 /* Build configuration list for PBXProject "WYCalendar" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CFEDEA6320BEB636003BB357;
+			productRefGroup = CFEDEA6D20BEB636003BB357 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CFEDEA6B20BEB636003BB357 /* WYCalendar */,
+				CFEDEA8320BEB638003BB357 /* WYCalendarTests */,
+				CFEDEA8E20BEB638003BB357 /* WYCalendarUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CFEDEA6A20BEB636003BB357 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFEDEA7C20BEB638003BB357 /* LaunchScreen.storyboard in Resources */,
+				CFEDEA7920BEB638003BB357 /* Assets.xcassets in Resources */,
+				CFEDEAB920BEB6FC003BB357 /* WYIcons.bundle in Resources */,
+				CFEDEA7720BEB636003BB357 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFEDEA8220BEB638003BB357 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFEDEA8D20BEB638003BB357 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CFEDEA6820BEB636003BB357 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFEDEA7420BEB636003BB357 /* ViewController.m in Sources */,
+				CFEDEABE20BEB6FC003BB357 /* WYCalendarModel.m in Sources */,
+				CFEDEABB20BEB6FC003BB357 /* UIView+WYCategory.m in Sources */,
+				CFEDEA7F20BEB638003BB357 /* main.m in Sources */,
+				CFEDEABC20BEB6FC003BB357 /* WYCalendarTool.m in Sources */,
+				CFEDEA7120BEB636003BB357 /* AppDelegate.m in Sources */,
+				CFEDEABA20BEB6FC003BB357 /* WYCalendarMonthView.m in Sources */,
+				CFEDEAB720BEB6FC003BB357 /* WYCalendarHeaderView.m in Sources */,
+				CFEDEABD20BEB6FC003BB357 /* WYCalendarView.m in Sources */,
+				CFEDEAB820BEB6FC003BB357 /* WYCalendarCollectionViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFEDEA8020BEB638003BB357 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFEDEA8920BEB638003BB357 /* WYCalendarTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFEDEA8B20BEB638003BB357 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFEDEA9420BEB638003BB357 /* WYCalendarUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CFEDEA8620BEB638003BB357 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CFEDEA6B20BEB636003BB357 /* WYCalendar */;
+			targetProxy = CFEDEA8520BEB638003BB357 /* PBXContainerItemProxy */;
+		};
+		CFEDEA9120BEB638003BB357 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CFEDEA6B20BEB636003BB357 /* WYCalendar */;
+			targetProxy = CFEDEA9020BEB638003BB357 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CFEDEA7520BEB636003BB357 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFEDEA7620BEB636003BB357 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CFEDEA7A20BEB638003BB357 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFEDEA7B20BEB638003BB357 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CFEDEA9620BEB638003BB357 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CFEDEA9720BEB638003BB357 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CFEDEA9920BEB638003BB357 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WYCalendar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = wangyong.WYCalendar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CFEDEA9A20BEB638003BB357 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WYCalendar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = wangyong.WYCalendar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CFEDEA9C20BEB638003BB357 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WYCalendarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = wangyong.WYCalendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WYCalendar.app/WYCalendar";
+			};
+			name = Debug;
+		};
+		CFEDEA9D20BEB638003BB357 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WYCalendarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = wangyong.WYCalendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WYCalendar.app/WYCalendar";
+			};
+			name = Release;
+		};
+		CFEDEA9F20BEB638003BB357 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WYCalendarUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = wangyong.WYCalendarUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WYCalendar;
+			};
+			name = Debug;
+		};
+		CFEDEAA020BEB638003BB357 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WYCalendarUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = wangyong.WYCalendarUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WYCalendar;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CFEDEA6720BEB636003BB357 /* Build configuration list for PBXProject "WYCalendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFEDEA9620BEB638003BB357 /* Debug */,
+				CFEDEA9720BEB638003BB357 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFEDEA9820BEB638003BB357 /* Build configuration list for PBXNativeTarget "WYCalendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFEDEA9920BEB638003BB357 /* Debug */,
+				CFEDEA9A20BEB638003BB357 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFEDEA9B20BEB638003BB357 /* Build configuration list for PBXNativeTarget "WYCalendarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFEDEA9C20BEB638003BB357 /* Debug */,
+				CFEDEA9D20BEB638003BB357 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFEDEA9E20BEB638003BB357 /* Build configuration list for PBXNativeTarget "WYCalendarUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFEDEA9F20BEB638003BB357 /* Debug */,
+				CFEDEAA020BEB638003BB357 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CFEDEA6420BEB636003BB357 /* Project object */;
+}
