@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF0FAF3B20BFE9DC0072C597 /* WYCalendarMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0FAF2D20BFE9DC0072C597 /* WYCalendarMonthView.m */; };
+		CF0FAF3C20BFE9DC0072C597 /* WYCalendarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0FAF2F20BFE9DC0072C597 /* WYCalendarModel.m */; };
+		CF0FAF3D20BFE9DC0072C597 /* UIView+WYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0FAF3120BFE9DC0072C597 /* UIView+WYCategory.m */; };
+		CF0FAF3E20BFE9DC0072C597 /* WYCalendarTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0FAF3520BFE9DC0072C597 /* WYCalendarTool.m */; };
+		CF0FAF3F20BFE9DC0072C597 /* WYIcons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CF0FAF3620BFE9DC0072C597 /* WYIcons.bundle */; };
+		CF0FAF4020BFE9DC0072C597 /* WYCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0FAF3820BFE9DC0072C597 /* WYCalendarView.m */; };
+		CF0FAF4120BFE9DC0072C597 /* WYCalendarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0FAF3920BFE9DC0072C597 /* WYCalendarCollectionViewCell.m */; };
+		CF0FAF4220BFE9DC0072C597 /* WYCalendarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0FAF3A20BFE9DC0072C597 /* WYCalendarHeaderView.m */; };
 		CFEDEA7120BEB636003BB357 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEA7020BEB636003BB357 /* AppDelegate.m */; };
 		CFEDEA7420BEB636003BB357 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEA7320BEB636003BB357 /* ViewController.m */; };
 		CFEDEA7720BEB636003BB357 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFEDEA7520BEB636003BB357 /* Main.storyboard */; };
@@ -15,14 +23,6 @@
 		CFEDEA7F20BEB638003BB357 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEA7E20BEB638003BB357 /* main.m */; };
 		CFEDEA8920BEB638003BB357 /* WYCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEA8820BEB638003BB357 /* WYCalendarTests.m */; };
 		CFEDEA9420BEB638003BB357 /* WYCalendarUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEA9320BEB638003BB357 /* WYCalendarUITests.m */; };
-		CFEDEAB720BEB6FC003BB357 /* WYCalendarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEAAC20BEB6FC003BB357 /* WYCalendarHeaderView.m */; };
-		CFEDEAB820BEB6FC003BB357 /* WYCalendarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEAAE20BEB6FC003BB357 /* WYCalendarCollectionViewCell.m */; };
-		CFEDEAB920BEB6FC003BB357 /* WYIcons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CFEDEAAF20BEB6FC003BB357 /* WYIcons.bundle */; };
-		CFEDEABA20BEB6FC003BB357 /* WYCalendarMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEAB120BEB6FC003BB357 /* WYCalendarMonthView.m */; };
-		CFEDEABB20BEB6FC003BB357 /* UIView+WYCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEAB320BEB6FC003BB357 /* UIView+WYCategory.m */; };
-		CFEDEABC20BEB6FC003BB357 /* WYCalendarTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEAB420BEB6FC003BB357 /* WYCalendarTool.m */; };
-		CFEDEABD20BEB6FC003BB357 /* WYCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEAB520BEB6FC003BB357 /* WYCalendarView.m */; };
-		CFEDEABE20BEB6FC003BB357 /* WYCalendarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEDEAB620BEB6FC003BB357 /* WYCalendarModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +43,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF0FAF2C20BFE9DC0072C597 /* WYCalendarHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYCalendarHeaderView.h; path = Calendar/WYCalendarHeaderView.h; sourceTree = SOURCE_ROOT; };
+		CF0FAF2D20BFE9DC0072C597 /* WYCalendarMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WYCalendarMonthView.m; path = Calendar/WYCalendarMonthView.m; sourceTree = SOURCE_ROOT; };
+		CF0FAF2E20BFE9DC0072C597 /* WYCalendarCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYCalendarCollectionViewCell.h; path = Calendar/WYCalendarCollectionViewCell.h; sourceTree = SOURCE_ROOT; };
+		CF0FAF2F20BFE9DC0072C597 /* WYCalendarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WYCalendarModel.m; path = Calendar/WYCalendarModel.m; sourceTree = SOURCE_ROOT; };
+		CF0FAF3020BFE9DC0072C597 /* UIView+WYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+WYCategory.h"; path = "Calendar/UIView+WYCategory.h"; sourceTree = SOURCE_ROOT; };
+		CF0FAF3120BFE9DC0072C597 /* UIView+WYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+WYCategory.m"; path = "Calendar/UIView+WYCategory.m"; sourceTree = SOURCE_ROOT; };
+		CF0FAF3220BFE9DC0072C597 /* WYCalendarMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYCalendarMonthView.h; path = Calendar/WYCalendarMonthView.h; sourceTree = SOURCE_ROOT; };
+		CF0FAF3320BFE9DC0072C597 /* WYCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYCalendarView.h; path = Calendar/WYCalendarView.h; sourceTree = SOURCE_ROOT; };
+		CF0FAF3420BFE9DC0072C597 /* WYCalendarModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYCalendarModel.h; path = Calendar/WYCalendarModel.h; sourceTree = SOURCE_ROOT; };
+		CF0FAF3520BFE9DC0072C597 /* WYCalendarTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WYCalendarTool.m; path = Calendar/WYCalendarTool.m; sourceTree = SOURCE_ROOT; };
+		CF0FAF3620BFE9DC0072C597 /* WYIcons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = WYIcons.bundle; path = Calendar/WYIcons.bundle; sourceTree = SOURCE_ROOT; };
+		CF0FAF3720BFE9DC0072C597 /* WYCalendarTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYCalendarTool.h; path = Calendar/WYCalendarTool.h; sourceTree = SOURCE_ROOT; };
+		CF0FAF3820BFE9DC0072C597 /* WYCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WYCalendarView.m; path = Calendar/WYCalendarView.m; sourceTree = SOURCE_ROOT; };
+		CF0FAF3920BFE9DC0072C597 /* WYCalendarCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WYCalendarCollectionViewCell.m; path = Calendar/WYCalendarCollectionViewCell.m; sourceTree = SOURCE_ROOT; };
+		CF0FAF3A20BFE9DC0072C597 /* WYCalendarHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WYCalendarHeaderView.m; path = Calendar/WYCalendarHeaderView.m; sourceTree = SOURCE_ROOT; };
 		CFEDEA6C20BEB636003BB357 /* WYCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFEDEA6F20BEB636003BB357 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CFEDEA7020BEB636003BB357 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -59,21 +74,6 @@
 		CFEDEA8F20BEB638003BB357 /* WYCalendarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WYCalendarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFEDEA9320BEB638003BB357 /* WYCalendarUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYCalendarUITests.m; sourceTree = "<group>"; };
 		CFEDEA9520BEB638003BB357 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CFEDEAA820BEB6FB003BB357 /* WYCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCalendarView.h; sourceTree = "<group>"; };
-		CFEDEAA920BEB6FC003BB357 /* WYCalendarHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCalendarHeaderView.h; sourceTree = "<group>"; };
-		CFEDEAAA20BEB6FC003BB357 /* WYCalendarModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCalendarModel.h; sourceTree = "<group>"; };
-		CFEDEAAB20BEB6FC003BB357 /* WYCalendarTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCalendarTool.h; sourceTree = "<group>"; };
-		CFEDEAAC20BEB6FC003BB357 /* WYCalendarHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCalendarHeaderView.m; sourceTree = "<group>"; };
-		CFEDEAAD20BEB6FC003BB357 /* WYCalendarMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCalendarMonthView.h; sourceTree = "<group>"; };
-		CFEDEAAE20BEB6FC003BB357 /* WYCalendarCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCalendarCollectionViewCell.m; sourceTree = "<group>"; };
-		CFEDEAAF20BEB6FC003BB357 /* WYIcons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WYIcons.bundle; sourceTree = "<group>"; };
-		CFEDEAB020BEB6FC003BB357 /* WYCalendarCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCalendarCollectionViewCell.h; sourceTree = "<group>"; };
-		CFEDEAB120BEB6FC003BB357 /* WYCalendarMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCalendarMonthView.m; sourceTree = "<group>"; };
-		CFEDEAB220BEB6FC003BB357 /* UIView+WYCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WYCategory.h"; sourceTree = "<group>"; };
-		CFEDEAB320BEB6FC003BB357 /* UIView+WYCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WYCategory.m"; sourceTree = "<group>"; };
-		CFEDEAB420BEB6FC003BB357 /* WYCalendarTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCalendarTool.m; sourceTree = "<group>"; };
-		CFEDEAB520BEB6FC003BB357 /* WYCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCalendarView.m; sourceTree = "<group>"; };
-		CFEDEAB620BEB6FC003BB357 /* WYCalendarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCalendarModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +101,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF0FAF2B20BFE9CD0072C597 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				CF0FAF3020BFE9DC0072C597 /* UIView+WYCategory.h */,
+				CF0FAF3120BFE9DC0072C597 /* UIView+WYCategory.m */,
+				CF0FAF2E20BFE9DC0072C597 /* WYCalendarCollectionViewCell.h */,
+				CF0FAF3920BFE9DC0072C597 /* WYCalendarCollectionViewCell.m */,
+				CF0FAF2C20BFE9DC0072C597 /* WYCalendarHeaderView.h */,
+				CF0FAF3A20BFE9DC0072C597 /* WYCalendarHeaderView.m */,
+				CF0FAF3420BFE9DC0072C597 /* WYCalendarModel.h */,
+				CF0FAF2F20BFE9DC0072C597 /* WYCalendarModel.m */,
+				CF0FAF3220BFE9DC0072C597 /* WYCalendarMonthView.h */,
+				CF0FAF2D20BFE9DC0072C597 /* WYCalendarMonthView.m */,
+				CF0FAF3720BFE9DC0072C597 /* WYCalendarTool.h */,
+				CF0FAF3520BFE9DC0072C597 /* WYCalendarTool.m */,
+				CF0FAF3320BFE9DC0072C597 /* WYCalendarView.h */,
+				CF0FAF3820BFE9DC0072C597 /* WYCalendarView.m */,
+				CF0FAF3620BFE9DC0072C597 /* WYIcons.bundle */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		CFEDEA6320BEB636003BB357 = {
 			isa = PBXGroup;
 			children = (
@@ -124,11 +146,11 @@
 		CFEDEA6E20BEB636003BB357 /* WYCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				CF0FAF2B20BFE9CD0072C597 /* Calendar */,
 				CFEDEA6F20BEB636003BB357 /* AppDelegate.h */,
 				CFEDEA7020BEB636003BB357 /* AppDelegate.m */,
 				CFEDEA7220BEB636003BB357 /* ViewController.h */,
 				CFEDEA7320BEB636003BB357 /* ViewController.m */,
-				CFEDEAA720BEB6D8003BB357 /* Calendar */,
 				CFEDEA7520BEB636003BB357 /* Main.storyboard */,
 				CFEDEA7820BEB638003BB357 /* Assets.xcassets */,
 				CFEDEA7A20BEB638003BB357 /* LaunchScreen.storyboard */,
@@ -154,28 +176,6 @@
 				CFEDEA9520BEB638003BB357 /* Info.plist */,
 			);
 			path = WYCalendarUITests;
-			sourceTree = "<group>";
-		};
-		CFEDEAA720BEB6D8003BB357 /* Calendar */ = {
-			isa = PBXGroup;
-			children = (
-				CFEDEAB220BEB6FC003BB357 /* UIView+WYCategory.h */,
-				CFEDEAB320BEB6FC003BB357 /* UIView+WYCategory.m */,
-				CFEDEAB020BEB6FC003BB357 /* WYCalendarCollectionViewCell.h */,
-				CFEDEAAE20BEB6FC003BB357 /* WYCalendarCollectionViewCell.m */,
-				CFEDEAA920BEB6FC003BB357 /* WYCalendarHeaderView.h */,
-				CFEDEAAC20BEB6FC003BB357 /* WYCalendarHeaderView.m */,
-				CFEDEAAA20BEB6FC003BB357 /* WYCalendarModel.h */,
-				CFEDEAB620BEB6FC003BB357 /* WYCalendarModel.m */,
-				CFEDEAAD20BEB6FC003BB357 /* WYCalendarMonthView.h */,
-				CFEDEAB120BEB6FC003BB357 /* WYCalendarMonthView.m */,
-				CFEDEAAB20BEB6FC003BB357 /* WYCalendarTool.h */,
-				CFEDEAB420BEB6FC003BB357 /* WYCalendarTool.m */,
-				CFEDEAA820BEB6FB003BB357 /* WYCalendarView.h */,
-				CFEDEAB520BEB6FC003BB357 /* WYCalendarView.m */,
-				CFEDEAAF20BEB6FC003BB357 /* WYIcons.bundle */,
-			);
-			path = Calendar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,7 +283,7 @@
 			files = (
 				CFEDEA7C20BEB638003BB357 /* LaunchScreen.storyboard in Resources */,
 				CFEDEA7920BEB638003BB357 /* Assets.xcassets in Resources */,
-				CFEDEAB920BEB6FC003BB357 /* WYIcons.bundle in Resources */,
+				CF0FAF3F20BFE9DC0072C597 /* WYIcons.bundle in Resources */,
 				CFEDEA7720BEB636003BB357 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,16 +309,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF0FAF4020BFE9DC0072C597 /* WYCalendarView.m in Sources */,
+				CF0FAF4220BFE9DC0072C597 /* WYCalendarHeaderView.m in Sources */,
 				CFEDEA7420BEB636003BB357 /* ViewController.m in Sources */,
-				CFEDEABE20BEB6FC003BB357 /* WYCalendarModel.m in Sources */,
-				CFEDEABB20BEB6FC003BB357 /* UIView+WYCategory.m in Sources */,
+				CF0FAF3C20BFE9DC0072C597 /* WYCalendarModel.m in Sources */,
 				CFEDEA7F20BEB638003BB357 /* main.m in Sources */,
-				CFEDEABC20BEB6FC003BB357 /* WYCalendarTool.m in Sources */,
 				CFEDEA7120BEB636003BB357 /* AppDelegate.m in Sources */,
-				CFEDEABA20BEB6FC003BB357 /* WYCalendarMonthView.m in Sources */,
-				CFEDEAB720BEB6FC003BB357 /* WYCalendarHeaderView.m in Sources */,
-				CFEDEABD20BEB6FC003BB357 /* WYCalendarView.m in Sources */,
-				CFEDEAB820BEB6FC003BB357 /* WYCalendarCollectionViewCell.m in Sources */,
+				CF0FAF3E20BFE9DC0072C597 /* WYCalendarTool.m in Sources */,
+				CF0FAF3D20BFE9DC0072C597 /* UIView+WYCategory.m in Sources */,
+				CF0FAF3B20BFE9DC0072C597 /* WYCalendarMonthView.m in Sources */,
+				CF0FAF4120BFE9DC0072C597 /* WYCalendarCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
