@@ -107,7 +107,9 @@
         
     } color:nil];
     
-    [leftButton setImage:[UIImage imageNamed:@"arrow_left" inBundle:[NSBundle bundleWithPath:[[[NSBundle bundleForClass:[WYCalendarTool class]] resourcePath] stringByAppendingPathComponent:@"WYIcons.bundle"]] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+    NSString * bundlePath = [[[NSBundle bundleForClass:[WYCalendarTool class]] resourcePath] stringByAppendingPathComponent:@"WYIcons.bundle"];
+    
+    [leftButton setImage:[UIImage imageNamed:@"arrow_left" inBundle:[NSBundle bundleWithPath:bundlePath] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
     
     UIButton * rightButton = [UIButton initWithFrame:CGRectMake(self.Width - _monthButtonWidth - _monthSpace, self.Height/2 - _monthButtonWidth/2, _monthButtonWidth, _monthButtonWidth) title:nil fontSize:0 buttonAction:^(id sender) {
         
@@ -116,8 +118,8 @@
         if (strongSelf->_rightBlock) strongSelf->_rightBlock();
         
     } color:nil];
-    
-    [rightButton setImage:[UIImage imageNamed:@"arrow_right" inBundle:[NSBundle bundleWithPath:[[[NSBundle bundleForClass:[WYCalendarTool class]] resourcePath] stringByAppendingPathComponent:@"WYIcons.bundle"]] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+
+    [rightButton setImage:[UIImage imageNamed:@"arrow_right" inBundle:[NSBundle bundleWithPath:bundlePath] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
     
     _titleLabel = [WYCalendarTool initLabelWithFrame:self.bounds text:@"" fontSize:_monthFontSize textColor:_monthColor aliment:NSTextAlignmentCenter];
     
