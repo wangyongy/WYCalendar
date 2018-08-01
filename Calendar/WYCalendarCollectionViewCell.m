@@ -117,6 +117,12 @@
 
 - (void)setModel:(WYCalendarModel *)model
 {
+    CGFloat width = self.contentView.Width;
+
+    _titleLabel.frame = CGRectMake((NSInteger)(width/2 - _dayLabelSize/2), (NSInteger)(width/2 - _dayLabelSize/2), (NSInteger)(_dayLabelSize), (NSInteger)(_dayLabelSize));
+    
+    _titleLabel.font = [UIFont systemFontOfSize:_dayFontSize];
+    
     _titleLabel.text = model.day > 0 ? [NSString stringWithFormat:@"%zd",model.day] : @"";
     
     if (model.status & WYCalendarCurrentMonth) {

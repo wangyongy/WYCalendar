@@ -18,7 +18,7 @@
  
  @return                        返回日历对象
  */
-+ (instancetype)calenderViewWithCalenderFrame:(CGRect)frame confirmBlock:(void(^)(NSArray <WYCalendarModel *>*selectArray))confirmBlock;
++ (instancetype)calenderViewWithCalenderFrame:(CGRect)frame selectDateArray:(NSArray *)selectDateArray confirmBlock:(void(^)(NSArray <WYCalendarModel *>*selectArray))confirmBlock;
 #pragma mark - 设置一些属性，如果有需要，需在将日历对象addSubview前调用这些方法
 /**
  头部视图设置,在这里选择性地设置头部视图中的属性

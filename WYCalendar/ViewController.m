@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = WYUIColorFromRGB(0xffffff);
+    
     [self initCalendarView];
     
 }

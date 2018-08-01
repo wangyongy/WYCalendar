@@ -48,9 +48,28 @@
     
     return [components weekday] - 1;
 }
+- (NSDate *)date
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
+    
+    components.day = self.day;
+    
+    components.month = self.month;
+    
+    components.year = self.year;
+
+    return [calendar dateFromComponents:components];
+}
 - (WYCalendarStatus)status
 {
-    return _status | (self.day == [[NSDate date] dateDay] && self.month == [[NSDate date] dateMonth] && self.year == [[NSDate date] dateYear]);
+    return _status | [self isEqual:[WYCalendarModel modelWithDate:[NSDate date]]];
+}
+
+- (BOOL)isEqual:(WYCalendarModel *)otherModel
+{
+    return (self.day == otherModel.day && self.month == otherModel.month && self.year == otherModel.year);
 }
 
 - (NSString *)EnglishMonth
@@ -63,5 +82,9 @@
     NSArray * monthStrArray = @[@"January",@"February",@"March",@"April",@"May",@"June",@"July",@"August",@"September",@"October",@"November",@"December"];
     
     return monthStrArray[self.month - 1];
+}
+- (NSString *)dateStr
+{
+    return [NSString stringWithFormat:@"%04zd%02zd%02zd",self.year,self.month,self.day];
 }
 @end

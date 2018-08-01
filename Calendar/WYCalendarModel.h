@@ -42,4 +42,16 @@ typedef NS_OPTIONS(NSUInteger, WYCalendarStatus) {
  */
 - (NSString *)EnglishMonth;
 
+/**
+ 当前日期字符串。格式:20180505
+ */
+- (NSString *)dateStr;
+/**
+ 当前模型的日期
+ */
+- (NSDate *)date;
+/**
+ 判断两个model是否是同一天
+ */
+- (BOOL)isEqual:(WYCalendarModel *)otherModel;
 @end
