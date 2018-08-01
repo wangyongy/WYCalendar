@@ -33,6 +33,8 @@
     
     WeekTitleType _weekTitleType;                                        //星期显示类型
     
+    CGFloat _weekFontSize;                                               //星期显示文字尺寸
+    
     NSArray * _footerTitleArray;                                         //底部按钮文字数组
     
     CGFloat _footerViewHeight;                                           //底部视图高度
@@ -91,7 +93,7 @@
     
     return view;
 }
-- (void)setUpDisplayStyle:(void(^)(dispatch_block_t *cancelBlock,UIColor ** backColor,WeekTitleType *weekTitleType,NSArray ** footerTitleArray,CGFloat *footerViewHeight,CGFloat *footerButtonWidth,CGFloat *footerButtonFontSize,UIColor ** footerButtonColor,BOOL *isShowCalendarShadow,BOOL *isShowSwipeAnimation,BOOL *isOnlyShowCurrentMonth,BOOL *isShowHeaderView,BOOL *isShowFooterView,WYSelectType *selectType))BaseSettingBlock
+- (void)setUpDisplayStyle:(void(^)(dispatch_block_t *cancelBlock,UIColor ** backColor,WeekTitleType *weekTitleType,CGFloat *weekFontSize,NSArray ** footerTitleArray,CGFloat *footerViewHeight,CGFloat *footerButtonWidth,CGFloat *footerButtonFontSize,UIColor ** footerButtonColor,BOOL *isShowCalendarShadow,BOOL *isShowSwipeAnimation,BOOL *isOnlyShowCurrentMonth,BOOL *isShowHeaderView,BOOL *isShowFooterView,WYSelectType *selectType))BaseSettingBlock
 {
     
     dispatch_block_t cancelBlock = _cancelBlock;                                            //取消的回调
@@ -99,6 +101,8 @@
     UIColor * backColor = _backColor;                                                       //基础背景色
     
     WeekTitleType weekTitleType = _weekTitleType;                                           //星期显示类型
+    
+    CGFloat weekFontSize = _weekFontSize;                                                   //星期显示文字尺寸
     
     NSArray * footerTitleArray = _footerTitleArray;                                         //底部按钮文字数组
     
@@ -123,13 +127,15 @@
     WYSelectType selectType = _selectType;                                                  //选择日期类型
     
     if (BaseSettingBlock) {
-        BaseSettingBlock(&cancelBlock,&backColor,&weekTitleType,&footerTitleArray,&footerViewHeight,&footerButtonWidth,&footerButtonFontSize,&footerButtonColor,&isShowCalendarShadow,&isShowSwipeAnimation,&isOnlyShowCurrentMonth,&isShowHeaderView,&isShowFooterView,&selectType);
+        BaseSettingBlock(&cancelBlock,&backColor,&weekTitleType,&weekFontSize,&footerTitleArray,&footerViewHeight,&footerButtonWidth,&footerButtonFontSize,&footerButtonColor,&isShowCalendarShadow,&isShowSwipeAnimation,&isOnlyShowCurrentMonth,&isShowHeaderView,&isShowFooterView,&selectType);
         
         _cancelBlock = cancelBlock;
         
         _backColor = backColor;
         
         _weekTitleType = weekTitleType;
+        
+        _weekFontSize = weekFontSize;
         
         _footerTitleArray = footerTitleArray;
         
@@ -162,7 +168,7 @@
 {
     _monthSettingBlock = monthSettingBlock;
 }
-- (void)setUpDayCellStyle:(void(^)(UIColor ** currentMonthTitleColor,UIColor ** todayTitleColor,UIColor ** notCurrentMonthTitleColor,UIColor ** selectTitleColor,UIColor ** selectBackColor,UIColor ** endSelectBackColor,CGFloat *dayFontSize,CGFloat *dayLabelSize,BOOL *showAnimation))daySettingBlock
+- (void)setUpDayCellStyle:(void(^)(UIColor ** currentMonthTitleColor,UIColor ** todayTitleColor,UIColor ** notCurrentMonthTitleColor,UIColor ** selectTitleColor,UIColor ** selectBackColor,UIColor ** backColor,UIColor ** endSelectBackColor,CGFloat *dayFontSize,CGFloat *dayLabelSize,BOOL *showAnimation))daySettingBlock
 {
     _daySettingBlock = daySettingBlock;
 }
@@ -186,18 +192,7 @@
     _calendarBackView = [[UIView alloc] initWithFrame:frame];
     
     _calendarBackView.backgroundColor = WYUIColorFromRGB(0xffffff);
-    
-    /**
-     阴影设置
-     */
-    _calendarBackView.layer.shadowColor = WYUIColorFromRGB(0x000000).CGColor;
-    
-    _calendarBackView.layer.shadowOpacity = 0.5f;
-    
-    _calendarBackView.layer.shadowRadius = 4.f;
-    
-    _calendarBackView.layer.shadowOffset = CGSizeMake(0, 4);
-    
+
     [self setDefaultData];
 }
 - (void)willMoveToSuperview:(UIView *)newSuperview{
@@ -215,7 +210,7 @@
 }
 - (void)setupViews
 {
-    self.backgroundColor = _backColor;
+    _calendarBackView.backgroundColor = _backColor;
     
     [_calendarBackView addSubview:self.calendarHeaderView];
     
@@ -229,6 +224,19 @@
     
     _calendarBackView.Height = _calendarFooterView.Bottom;
     
+    if (_isShowCalendarShadow) {
+        /**
+         阴影设置
+         */
+        _calendarBackView.layer.shadowColor = WYUIColorFromRGB(0x000000).CGColor;
+        
+        _calendarBackView.layer.shadowOpacity = 0.5f;
+        
+        _calendarBackView.layer.shadowRadius = 4.f;
+        
+        _calendarBackView.layer.shadowOffset = CGSizeMake(0, 4);
+    }
+    
     [self addSubview:_calendarBackView];
 }
 #pragma mark - data
@@ -240,6 +248,8 @@
      default styles
      */
     _weekTitleType = WeekTitleTypeEnglishShort;
+    
+    _weekFontSize = 10;
     
     _backColor = [WYUIColorFromRGB(0x000000) colorWithAlphaComponent:0.1];
     
@@ -478,7 +488,7 @@
         
         for (int i = 0; i < weekTitleArray.count; i++) {
             
-            UILabel *weekLabel = [WYCalendarTool initLabelWithFrame:CGRectMake(i * width, 0, width, width) text:weekTitleArray[i] fontSize:10 textColor:WYUIColorFromRGB(0x999999) aliment:NSTextAlignmentCenter];
+            UILabel *weekLabel = [WYCalendarTool initLabelWithFrame:CGRectMake(i * width, 0, width, width) text:weekTitleArray[i] fontSize:_weekFontSize textColor:WYUIColorFromRGB(0x999999) aliment:NSTextAlignmentCenter];
             
             [_calendarWeekView addSubview:weekLabel];
         }
@@ -510,7 +520,7 @@
         
         [_collectionView registerClass:[WYCalendarCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
         
-        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.backgroundColor = _backColor;
     }
     
     return _collectionView;
@@ -692,9 +702,6 @@
     }
     
     if (!_isShowFooterView) {
-        
-        [self removeFromSuperview];
-        
         if (_confirmBlock) {
             _confirmBlock(self.selectArray);
         }

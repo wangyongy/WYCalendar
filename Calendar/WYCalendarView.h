@@ -26,6 +26,7 @@
  *cancelBlock;                  取消的回调
  *backColor;                    基础背景色
  *weekTitleType;                星期显示类型
+ *weekFontSize;                 星期显示尺寸
  *footerTitleArray;             底部按钮文字数组
  *footerViewHeight;             底部视图高度
  *footerButtonWidth;            底部按钮宽度
@@ -40,7 +41,7 @@
 
  @param BaseSettingBlock        设置基础属性
  */
-- (void)setUpDisplayStyle:(void(^)(dispatch_block_t *cancelBlock,UIColor ** backColor,WeekTitleType *weekTitleType,NSArray ** footerTitleArray,CGFloat *footerViewHeight,CGFloat *footerButtonWidth,CGFloat *footerButtonFontSize,UIColor ** footerButtonColor,BOOL *isShowCalendarShadow,BOOL *isShowSwipeAnimation,BOOL *isOnlyShowCurrentMonth,BOOL *isShowHeaderView,BOOL *isShowFooterView,WYSelectType *selectType))BaseSettingBlock;
+- (void)setUpDisplayStyle:(void(^)(dispatch_block_t *cancelBlock,UIColor ** backColor,WeekTitleType *weekTitleType,CGFloat *weekFontSize,NSArray ** footerTitleArray,CGFloat *footerViewHeight,CGFloat *footerButtonWidth,CGFloat *footerButtonFontSize,UIColor ** footerButtonColor,BOOL *isShowCalendarShadow,BOOL *isShowSwipeAnimation,BOOL *isOnlyShowCurrentMonth,BOOL *isShowHeaderView,BOOL *isShowFooterView,WYSelectType *selectType))BaseSettingBlock;
 
 /**
  头部视图设置,在这里选择性地设置头部视图中的属性
@@ -85,13 +86,14 @@
  *selectTitleColor;             选中后文字颜色
  *selectBackColor;              选中后文字背景颜色
  *selectBackColor;              结束选中后文字背景颜色
+ *selectBackColor;              文字背景颜色
  *dayFontSize;                  日期文字尺寸
  *dayLabelSize;                 日期文本尺寸
  *showAnimation;                选中后是否展示动画
  
  @param daySettingBlock         设置日期视图属性
  */
-- (void)setUpDayCellStyle:(void(^)(UIColor ** currentMonthTitleColor,UIColor ** todayTitleColor,UIColor ** notCurrentMonthTitleColor,UIColor ** selectTitleColor,UIColor ** selectBackColor,UIColor ** endSelectBackColor,CGFloat *dayFontSize,CGFloat *dayLabelSize,BOOL *showAnimation))daySettingBlock;
+- (void)setUpDayCellStyle:(void(^)(UIColor ** currentMonthTitleColor,UIColor ** todayTitleColor,UIColor ** notCurrentMonthTitleColor,UIColor ** selectTitleColor,UIColor ** selectBackColor,UIColor ** backColor,UIColor ** endSelectBackColor,CGFloat *dayFontSize,CGFloat *dayLabelSize,BOOL *showAnimation))daySettingBlock;
 
 @end
 

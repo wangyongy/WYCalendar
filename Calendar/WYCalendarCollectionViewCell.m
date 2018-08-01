@@ -24,6 +24,8 @@
     
     UIColor * _selectTitleColor;                    //选中后文字颜色
     
+    UIColor * _backColor;                           //文字背景颜色
+    
     UIColor * _selectBackColor;                     //选中后文字背景颜色
     
     UIColor * _endSelectBackColor;                  //结束日期选中后文字背景颜色
@@ -53,7 +55,7 @@
     return self;
 }
 
-- (void)setUpDayCellStyle:(void(^)(UIColor ** currentMonthTitleColor,UIColor ** todayTitleColor,UIColor ** notCurrentMonthTitleColor,UIColor ** selectTitleColor,UIColor ** selectBackColor,UIColor ** endSelectBackColor,CGFloat *dayFontSize,CGFloat *dayLabelSize,BOOL *showAnimation))daySettingBlock
+- (void)setUpDayCellStyle:(void(^)(UIColor ** currentMonthTitleColor,UIColor ** todayTitleColor,UIColor ** notCurrentMonthTitleColor,UIColor ** selectTitleColor,UIColor ** selectBackColor,UIColor ** backColor,UIColor ** endSelectBackColor,CGFloat *dayFontSize,CGFloat *dayLabelSize,BOOL *showAnimation))daySettingBlock
 {
     UIColor * currentMonthTitleColor =      _currentMonthTitleColor;              //当前月份日期文字颜色
     
@@ -65,6 +67,8 @@
     
     UIColor * selectBackColor =             _selectBackColor;                     //选中后文字背景颜色
     
+    UIColor * backColor =                   _backColor;                           //选中后文字背景颜色
+    
     UIColor * endSelectBackColor =          _endSelectBackColor;                  //结束日期选中后文字背景颜色
     
     CGFloat   dayFontSize =                 _dayFontSize;                         //日期文字尺寸
@@ -74,7 +78,7 @@
     BOOL      showAnimation =               _showAnimation;                       //选中后是否展示动画
     
     if (daySettingBlock) {
-    daySettingBlock(&currentMonthTitleColor,&todayTitleColor,&notCurrentMonthTitleColor,&selectTitleColor,&selectBackColor,&endSelectBackColor,&dayFontSize,&dayLabelSize,&showAnimation);
+    daySettingBlock(&currentMonthTitleColor,&todayTitleColor,&notCurrentMonthTitleColor,&selectTitleColor,&selectBackColor,&backColor,&endSelectBackColor,&dayFontSize,&dayLabelSize,&showAnimation);
         
         _currentMonthTitleColor =           currentMonthTitleColor;
         
@@ -86,13 +90,15 @@
         
         _selectBackColor =                  selectBackColor;
         
+        _backColor =                        backColor;
+        
         _endSelectBackColor =               endSelectBackColor;
         
         _dayFontSize =                      dayFontSize;
         
         _dayLabelSize =                     dayLabelSize;
         
-        _showAnimation =                  showAnimation;
+        _showAnimation =                    showAnimation;
     }
 }
 
@@ -107,6 +113,8 @@
     _notCurrentMonthTitleColor = WYUIColorFromRGB(0x999999);
     
     _selectTitleColor = WYUIColorFromRGB(0xffffff);
+    
+    _backColor = WYUIColorFromRGB(0xffffff);
     
     _dayFontSize = 8;
     
@@ -161,7 +169,7 @@
             
         }else{
             
-            _titleLabel.backgroundColor = WYUIColorFromRGB(0xffffff);
+            _titleLabel.backgroundColor = _backColor;
             
             _titleLabel.layer.cornerRadius = 0;
         }
@@ -170,7 +178,7 @@
         
         [_titleLabel setTextColor: _notCurrentMonthTitleColor];
         
-        _titleLabel.backgroundColor = WYUIColorFromRGB(0xffffff);
+        _titleLabel.backgroundColor = _backColor;
         
         _titleLabel.layer.cornerRadius = 0;
     }
