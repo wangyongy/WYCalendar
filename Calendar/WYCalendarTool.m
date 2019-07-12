@@ -2,9 +2,8 @@
 //  WYCalendarTool.m
 //  CalendarDemo
 //
-//  Created by 王勇 on 2018/5/26.
 //  Copyright © 2018年 王勇. All rights reserved.
-//
+//  
 
 #import "WYCalendarTool.h"
 
