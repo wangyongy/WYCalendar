@@ -24,9 +24,11 @@
  头部视图设置,在这里选择性地设置头部视图中的属性
 
  *cancelBlock;                  取消的回调
+ *changeMonthBlock;             切换月份的回调
  *backColor;                    基础背景色
  *weekTitleType;                星期显示类型
  *weekFontSize;                 星期显示尺寸
+ *weekTitleColor;               星期显示文字颜色
  *footerTitleArray;             底部按钮文字数组
  *footerViewHeight;             底部视图高度
  *footerButtonWidth;            底部按钮宽度
@@ -37,11 +39,14 @@
  *isOnlyShowCurrentMonth;       只显示属于当前月份的日期
  *isShowHeaderView;             是否显示头部视图
  *isShowFooterView;             是否显示底部视图
+ *isShowMonthView;              是否显示月份视图
+ *isShowWeekView;               是否显示周视图
  *selectType;                   选择日期类型
-
+ *setCustomCellBlock;           自定义cell
+ 
  @param BaseSettingBlock        设置基础属性
  */
-- (void)setUpDisplayStyle:(void(^)(dispatch_block_t *cancelBlock,UIColor ** backColor,WeekTitleType *weekTitleType,CGFloat *weekFontSize,NSArray ** footerTitleArray,CGFloat *footerViewHeight,CGFloat *footerButtonWidth,CGFloat *footerButtonFontSize,UIColor ** footerButtonColor,BOOL *isShowCalendarShadow,BOOL *isShowSwipeAnimation,BOOL *isOnlyShowCurrentMonth,BOOL *isShowHeaderView,BOOL *isShowFooterView,WYSelectType *selectType))BaseSettingBlock;
+- (void)setUpDisplayStyle:(void(^)(dispatch_block_t *cancelBlock,void(^*changeMonthBlock)(NSDate * monthDate) ,UIColor ** backColor,WeekTitleType *weekTitleType,CGFloat *weekFontSize,UIColor **weekTitleColor,NSArray ** footerTitleArray,CGFloat *footerViewHeight,CGFloat *footerButtonWidth,CGFloat *footerButtonFontSize,UIColor ** footerButtonColor,BOOL *isShowCalendarShadow,BOOL *isShowSwipeAnimation,BOOL *isOnlyShowCurrentMonth,BOOL *isShowHeaderView,BOOL *isShowFooterView,BOOL *isShowMonthView,BOOL *isShowWeekView,WYSelectType *selectType,void(^*setCustomCellBlock)(UICollectionViewCell *cell,NSDate * date)))BaseSettingBlock;
 
 /**
  头部视图设置,在这里选择性地设置头部视图中的属性
@@ -81,6 +86,7 @@
  日期视图设置,在这里选择性地设置日期视图中的属性
  
  *currentMonthTitleColor;       当前月份日期文字颜色
+ *currentMonthChineseTitleColor;当前月份日期农历文字颜色
  *todayTitleColor;              今天文字颜色
  *notCurrentMonthTitleColor;    非当前月份日期文字颜色
  *selectTitleColor;             选中后文字颜色
@@ -90,10 +96,12 @@
  *dayFontSize;                  日期文字尺寸
  *dayLabelSize;                 日期文本尺寸
  *showAnimation;                选中后是否展示动画
+ *showChineseDate;              是否显示农历日期
  
  @param daySettingBlock         设置日期视图属性
  */
-- (void)setUpDayCellStyle:(void(^)(UIColor ** currentMonthTitleColor,UIColor ** todayTitleColor,UIColor ** notCurrentMonthTitleColor,UIColor ** selectTitleColor,UIColor ** selectBackColor,UIColor ** backColor,UIColor ** endSelectBackColor,CGFloat *dayFontSize,CGFloat *dayLabelSize,BOOL *showAnimation))daySettingBlock;
+- (void)setUpDayCellStyle:(void(^)(UIColor ** currentMonthTitleColor,UIColor ** currentMonthChineseTitleColor,UIColor ** todayTitleColor,UIColor ** notCurrentMonthTitleColor,UIColor ** selectTitleColor,UIColor ** selectBackColor,UIColor ** backColor,UIColor ** endSelectBackColor,CGFloat *dayFontSize,CGFloat *dayLabelSize,BOOL *showAnimation,BOOL *showChineseDate))daySettingBlock;
+
 
 @end
 

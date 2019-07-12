@@ -25,9 +25,9 @@ typedef NS_OPTIONS(NSUInteger, WYCalendarStatus) {
 
 @property (nonatomic, assign, readonly) NSInteger week;         //所属星期,0代表周日
 
-@property (nonatomic, assign, readonly) NSInteger year;         //所属年份
+@property (nonatomic, assign) NSInteger year;                   //所属年份
 
-@property (nonatomic, assign, readonly) NSInteger month;        //所属月份
+@property (nonatomic, assign) NSInteger month;                  //所属月份
 
 @property (nonatomic, assign) NSInteger day;                    //所属天
 

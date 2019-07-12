@@ -67,7 +67,11 @@ typedef NS_ENUM(NSUInteger, WYSelectType) {
 + (void)sortCaledarModelArray:(NSMutableArray <WYCalendarModel*>*)array;
 
 @end
+@interface NSDate (Chinese)
 
+- (NSString *)ChineseDate;
+
+@end
 @interface NSDate (WYCalendar)
 
 /**

@@ -29,11 +29,15 @@
      */
     dispatch_block_t _cancelBlock;                                       //取消的回调
     
+    void(^_changeMonthBlock)(NSDate * monthDate) ;                       //切换月份的回调
+    
     UIColor * _backColor;                                                //背景色
     
     WeekTitleType _weekTitleType;                                        //星期显示类型
     
     CGFloat _weekFontSize;                                               //星期显示文字尺寸
+    
+    UIColor * _weekTitleColor;                                           //星期显示文字颜色
     
     NSArray * _footerTitleArray;                                         //底部按钮文字数组
     
@@ -53,9 +57,15 @@
     
     BOOL _isShowHeaderView;                                              //是否显示头部视图
     
+    BOOL _isShowMonthView;                                              //是否显示月份视图
+    
+    BOOL _isShowWeekView;                                               //是否显示周视图
+    
     BOOL _isShowFooterView;                                              //是否显示底部视图
     
     WYSelectType _selectType;                                            //选择日期类型,默认为开始日期+结束日期
+    
+    void(^_setCustomCellBlock)(UICollectionViewCell *cell,NSDate * date);//自定义cell
 }
 
 #pragma mark --- UI
@@ -93,16 +103,20 @@
     
     return view;
 }
-- (void)setUpDisplayStyle:(void(^)(dispatch_block_t *cancelBlock,UIColor ** backColor,WeekTitleType *weekTitleType,CGFloat *weekFontSize,NSArray ** footerTitleArray,CGFloat *footerViewHeight,CGFloat *footerButtonWidth,CGFloat *footerButtonFontSize,UIColor ** footerButtonColor,BOOL *isShowCalendarShadow,BOOL *isShowSwipeAnimation,BOOL *isOnlyShowCurrentMonth,BOOL *isShowHeaderView,BOOL *isShowFooterView,WYSelectType *selectType))BaseSettingBlock
+- (void)setUpDisplayStyle:(void(^)(dispatch_block_t *cancelBlock,void(^*changeMonthBlock)(NSDate * monthDate) ,UIColor ** backColor,WeekTitleType *weekTitleType,CGFloat *weekFontSize,UIColor **weekTitleColor,NSArray ** footerTitleArray,CGFloat *footerViewHeight,CGFloat *footerButtonWidth,CGFloat *footerButtonFontSize,UIColor ** footerButtonColor,BOOL *isShowCalendarShadow,BOOL *isShowSwipeAnimation,BOOL *isOnlyShowCurrentMonth,BOOL *isShowHeaderView,BOOL *isShowFooterView,BOOL *isShowMonthView,BOOL *isShowWeekView,WYSelectType *selectType,void(^*setCustomCellBlock)(UICollectionViewCell *cell,NSDate * date)))BaseSettingBlock
 {
     
     dispatch_block_t cancelBlock = _cancelBlock;                                            //取消的回调
+    
+    void(^changeMonthBlock)(NSDate * monthDate) = _changeMonthBlock;                        //切换月份的回调
     
     UIColor * backColor = _backColor;                                                       //基础背景色
     
     WeekTitleType weekTitleType = _weekTitleType;                                           //星期显示类型
     
     CGFloat weekFontSize = _weekFontSize;                                                   //星期显示文字尺寸
+    
+    UIColor *weekTitleColor = _weekTitleColor;                                              //星期显示文字颜色
     
     NSArray * footerTitleArray = _footerTitleArray;                                         //底部按钮文字数组
     
@@ -124,18 +138,28 @@
     
     BOOL isShowFooterView = _isShowFooterView;                                              //是否显示底部视图
     
+    BOOL isShowMonthView = _isShowMonthView;                                                //是否显示月份视图
+    
+    BOOL isShowWeekView = _isShowWeekView;                                                  //是否显示周视图
+    
     WYSelectType selectType = _selectType;                                                  //选择日期类型
     
+    void(^setCustomCellBlock)(UICollectionViewCell *cell,NSDate * date) = _setCustomCellBlock;//自定义cell
+    
     if (BaseSettingBlock) {
-        BaseSettingBlock(&cancelBlock,&backColor,&weekTitleType,&weekFontSize,&footerTitleArray,&footerViewHeight,&footerButtonWidth,&footerButtonFontSize,&footerButtonColor,&isShowCalendarShadow,&isShowSwipeAnimation,&isOnlyShowCurrentMonth,&isShowHeaderView,&isShowFooterView,&selectType);
+        BaseSettingBlock(&cancelBlock,&changeMonthBlock,&backColor,&weekTitleType,&weekFontSize,&weekTitleColor,&footerTitleArray,&footerViewHeight,&footerButtonWidth,&footerButtonFontSize,&footerButtonColor,&isShowCalendarShadow,&isShowSwipeAnimation,&isOnlyShowCurrentMonth,&isShowHeaderView,&isShowFooterView,&isShowMonthView,&isShowWeekView,&selectType,&setCustomCellBlock);
         
         _cancelBlock = cancelBlock;
+        
+        _changeMonthBlock = changeMonthBlock;
         
         _backColor = backColor;
         
         _weekTitleType = weekTitleType;
         
         _weekFontSize = weekFontSize;
+        
+        _weekTitleColor = weekTitleColor;
         
         _footerTitleArray = footerTitleArray;
         
@@ -157,7 +181,13 @@
         
         _isShowFooterView = isShowFooterView;
         
+        _isShowMonthView = isShowMonthView;
+        
+        _isShowWeekView = isShowWeekView;
+        
         _selectType = selectType;
+        
+        _setCustomCellBlock = setCustomCellBlock;
     }
 }
 - (void)setUpHeaderStyle:(void(^)(NSArray **titleArray,WeekTitleType *weekTitleType,BOOL      *isEnglishMonth,UIColor **backColor,UIColor **titleColor,UIColor **yearColor,UIColor **dayColor,CGFloat *leftSpaceX,CGFloat *topSpaceY,CGFloat *titleHeight,CGFloat *yearHeight,CGFloat *dayHegiht,CGFloat *titleFontSize,CGFloat *yearFontSize,CGFloat *dayFontSize))headerSettingBlock
@@ -168,7 +198,7 @@
 {
     _monthSettingBlock = monthSettingBlock;
 }
-- (void)setUpDayCellStyle:(void(^)(UIColor ** currentMonthTitleColor,UIColor ** todayTitleColor,UIColor ** notCurrentMonthTitleColor,UIColor ** selectTitleColor,UIColor ** selectBackColor,UIColor ** backColor,UIColor ** endSelectBackColor,CGFloat *dayFontSize,CGFloat *dayLabelSize,BOOL *showAnimation))daySettingBlock
+- (void)setUpDayCellStyle:(void(^)(UIColor ** currentMonthTitleColor,UIColor ** currentMonthChineseTitleColor,UIColor ** todayTitleColor,UIColor ** notCurrentMonthTitleColor,UIColor ** selectTitleColor,UIColor ** selectBackColor,UIColor ** backColor,UIColor ** endSelectBackColor,CGFloat *dayFontSize,CGFloat *dayLabelSize,BOOL *showAnimation,BOOL *showChineseDate))daySettingBlock
 {
     _daySettingBlock = daySettingBlock;
 }
@@ -251,6 +281,8 @@
     
     _weekFontSize = 10;
     
+    _weekTitleColor = WYUIColorFromRGB(0x999999);
+    
     _backColor = [WYUIColorFromRGB(0x000000) colorWithAlphaComponent:0.1];
     
     _footerTitleArray = @[@"取消",@"确认"];
@@ -273,7 +305,13 @@
     
     _isShowFooterView = YES;
     
+    _isShowMonthView = YES;
+    
+    _isShowWeekView = YES;
+    
     _selectType = WYSelectTypeTwo;
+    
+    _setCustomCellBlock = nil;
 }
 - (void)reloadData
 {
@@ -311,6 +349,10 @@
         if (i < model.firstWeekday) {
             
             model.day = _isOnlyShowCurrentMonth ? 0 : ([self.currentMonthDate.previousMonthDate totalDaysInMonth] - (model.firstWeekday - i) + 1);
+            
+            model.month = _currentMonthDate.previousMonthDate.dateMonth;
+            
+            model.year = _currentMonthDate.previousMonthDate.dateYear;
         }
         //当月的日期
         else if (i < (model.firstWeekday + [self.currentMonthDate totalDaysInMonth])) {
@@ -323,6 +365,10 @@
         else {
             
             model.day = _isOnlyShowCurrentMonth ? 0 : (i - model.firstWeekday - [self.currentMonthDate totalDaysInMonth] + 1);
+            
+            model.month = _currentMonthDate.nextMonthDate.dateMonth;
+            
+            model.year = _currentMonthDate.nextMonthDate.dateYear;
         }
         
         for (WYCalendarModel * selectModel in _selectArray) {
@@ -333,12 +379,15 @@
                 
                 model.status = selectModel.status;
             }
+        }
+        
+        if (i == 35 && !(model.status & WYCalendarCurrentMonth)) {
             
+            break;
         }
         
         [self.dataArray addObject:model];
     }
-    
     
     /**
      更新UI
@@ -423,6 +472,8 @@
     self.currentMonthDate = left ? _currentMonthDate.previousMonthDate : _currentMonthDate.nextMonthDate;
     
     [self reloadData];
+    
+    if (_changeMonthBlock) _changeMonthBlock(_currentMonthDate);
 }
 
 #pragma mark - 懒加载
@@ -473,6 +524,13 @@
         [_calendarMonthView setUpMonthStyle:_monthSettingBlock];
     }
     
+    if (!_isShowMonthView) {
+        
+        _calendarMonthView.Height = 0;
+        
+        _calendarMonthView.hidden = YES;
+    }
+    
     return _calendarMonthView;
 }
 
@@ -488,10 +546,17 @@
         
         for (int i = 0; i < weekTitleArray.count; i++) {
             
-            UILabel *weekLabel = [WYCalendarTool initLabelWithFrame:CGRectMake(i * width, 0, width, width) text:weekTitleArray[i] fontSize:_weekFontSize textColor:WYUIColorFromRGB(0x999999) aliment:NSTextAlignmentCenter];
+            UILabel *weekLabel = [WYCalendarTool initLabelWithFrame:CGRectMake(i * width, 0, width, width) text:weekTitleArray[i] fontSize:_weekFontSize textColor:_weekTitleColor aliment:NSTextAlignmentCenter];
             
             [_calendarWeekView addSubview:weekLabel];
         }
+    }
+    
+    if (!_isShowWeekView) {
+        
+        _calendarWeekView.Height = 0;
+        
+        _calendarWeekView.hidden = YES;
     }
     
     return _calendarWeekView;
@@ -616,23 +681,37 @@
     
     if (!cell) {
         
-        cell =[[WYCalendarCollectionViewCell alloc]init];
+        cell = [[WYCalendarCollectionViewCell alloc] init];
     }
     
     [cell setUpDayCellStyle:_daySettingBlock];
     
     cell.model = self.dataArray[indexPath.row];
     
+    if (_setCustomCellBlock) {
+        
+        _setCustomCellBlock(cell,cell.model.date);
+    }
+    
     return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row >= self.dataArray.count) return;
+    if (indexPath.row >= self.dataArray.count)return;
     
     WYCalendarModel *model = self.dataArray[indexPath.row];
     
-    if (!(model.status & WYCalendarCurrentMonth)) return;
+    if (!(model.status & WYCalendarCurrentMonth)){
+        
+        BOOL isPrevious = model.month == _currentMonthDate.previousMonthDate.dateMonth;
+        
+        [self turnToLeftOrRight:isPrevious];
+        
+        [self collectionView:collectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForRow:isPrevious ? (self.dataArray.count - 7 + indexPath.row) : indexPath.row%7 inSection:0]];
+        
+        return;
+    }
     
     if (_calendarHeaderView.isStartDate) {
         

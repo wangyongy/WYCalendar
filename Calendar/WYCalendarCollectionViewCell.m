@@ -18,6 +18,8 @@
      */
     UIColor * _currentMonthTitleColor;              //当前月份日期文字颜色
     
+    UIColor * _currentMonthChineseTitleColor;       //当前月份日期农历文字颜色
+    
     UIColor * _todayTitleColor;                     //今天文字颜色
     
     UIColor * _notCurrentMonthTitleColor;           //非当前月份日期文字颜色
@@ -35,6 +37,8 @@
     CGFloat   _dayLabelSize;                        //日期文本尺寸
     
     BOOL      _showAnimation;                       //选中后是否展示动画
+    
+    BOOL      _showChineseDate;                      //是否显示农历日期
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -43,21 +47,23 @@
     if (self) {
     
         [self setDefaultData];
-        
-        CGFloat width = self.contentView.Width;
 
-        _titleLabel = [WYCalendarTool initLabelWithFrame:CGRectMake((NSInteger)(width/2 - _dayLabelSize/2), (NSInteger)(width/2 - _dayLabelSize/2), (NSInteger)(_dayLabelSize), (NSInteger)(_dayLabelSize)) text:nil fontSize:_dayFontSize textColor:nil aliment:NSTextAlignmentCenter];
+        _titleLabel = [WYCalendarTool initLabelWithFrame:CGRectZero text:nil fontSize:0 textColor:nil aliment:NSTextAlignmentCenter];
         
-        _titleLabel.backgroundColor = WYUIColorFromRGB(0xffffff);
+        _titleLabel.backgroundColor = WYUIColorFromRGB(0xaaaaaa);
+        
+        _titleLabel.numberOfLines = 0;
         
         [self.contentView addSubview:_titleLabel];
     }
     return self;
 }
 
-- (void)setUpDayCellStyle:(void(^)(UIColor ** currentMonthTitleColor,UIColor ** todayTitleColor,UIColor ** notCurrentMonthTitleColor,UIColor ** selectTitleColor,UIColor ** selectBackColor,UIColor ** backColor,UIColor ** endSelectBackColor,CGFloat *dayFontSize,CGFloat *dayLabelSize,BOOL *showAnimation))daySettingBlock
+- (void)setUpDayCellStyle:(void(^)(UIColor ** currentMonthTitleColor,UIColor ** currentMonthChineseTitleColor,UIColor ** todayTitleColor,UIColor ** notCurrentMonthTitleColor,UIColor ** selectTitleColor,UIColor ** selectBackColor,UIColor ** backColor,UIColor ** endSelectBackColor,CGFloat *dayFontSize,CGFloat *dayLabelSize,BOOL *showAnimation,BOOL *showChineseDate))daySettingBlock
 {
     UIColor * currentMonthTitleColor =      _currentMonthTitleColor;              //当前月份日期文字颜色
+    
+    UIColor * currentMonthChineseTitleColor = _currentMonthChineseTitleColor;     //当前月份日期农历文字颜色
     
     UIColor * todayTitleColor =             _todayTitleColor;                     //今天文字颜色
     
@@ -77,10 +83,14 @@
     
     BOOL      showAnimation =               _showAnimation;                       //选中后是否展示动画
     
+    BOOL      showChineseDate =             _showChineseDate;                     //是否显示农历日期
+    
     if (daySettingBlock) {
-    daySettingBlock(&currentMonthTitleColor,&todayTitleColor,&notCurrentMonthTitleColor,&selectTitleColor,&selectBackColor,&backColor,&endSelectBackColor,&dayFontSize,&dayLabelSize,&showAnimation);
+    daySettingBlock(&currentMonthTitleColor,&currentMonthChineseTitleColor,&todayTitleColor,&notCurrentMonthTitleColor,&selectTitleColor,&selectBackColor,&backColor,&endSelectBackColor,&dayFontSize,&dayLabelSize,&showAnimation,&showChineseDate);
         
         _currentMonthTitleColor =           currentMonthTitleColor;
+        
+        _currentMonthChineseTitleColor =    currentMonthChineseTitleColor;
         
         _todayTitleColor =                  todayTitleColor;
         
@@ -99,12 +109,16 @@
         _dayLabelSize =                     dayLabelSize;
         
         _showAnimation =                    showAnimation;
+        
+        _showChineseDate =                  showChineseDate;
     }
 }
 
 - (void)setDefaultData
 {
     _currentMonthTitleColor = WYUIColorFromRGB(0x111111);
+    
+    _currentMonthChineseTitleColor = WYUIColorFromRGB(0x999999);
     
     _selectBackColor = _todayTitleColor = WYUIColorFromRGB(0x0fc6a6);
     
@@ -121,25 +135,31 @@
     _dayLabelSize = self.contentView.Width*0.8;
     
     _showAnimation = YES;
+    
+    _showChineseDate = YES;
 }
 
 - (void)setModel:(WYCalendarModel *)model
 {
     CGFloat width = self.contentView.Width;
 
-    _titleLabel.frame = CGRectMake((NSInteger)(width/2 - _dayLabelSize/2), (NSInteger)(width/2 - _dayLabelSize/2), (NSInteger)(_dayLabelSize), (NSInteger)(_dayLabelSize));
+    _titleLabel.frame = CGRectMake((width/2 - _dayLabelSize/2), (width/2 - _dayLabelSize/2), (_dayLabelSize), (_dayLabelSize));
     
-    _titleLabel.font = [UIFont systemFontOfSize:_dayFontSize];
+    UIColor * defaultColor = nil;
     
-    _titleLabel.text = model.day > 0 ? [NSString stringWithFormat:@"%zd",model.day] : @"";
+    UIColor * chineseColor = nil;
     
     if (model.status & WYCalendarCurrentMonth) {
         
-        [_titleLabel setTextColor: _currentMonthTitleColor];
+        defaultColor = _currentMonthTitleColor;
+        
+        chineseColor = _currentMonthChineseTitleColor;
         
         if (model.status & WYCalendarToday) {
             
-            [_titleLabel setTextColor: _todayTitleColor];
+            defaultColor = _todayTitleColor;
+            
+            chineseColor = _todayTitleColor;
         }
         
         if ((model.status & WYCalendarStartSelected) || (model.status & WYCalendarEndSelected)) {
@@ -163,7 +183,9 @@
                 [_titleLabel.layer addAnimation:anim forKey:nil];
             }
 
-            [_titleLabel setTextColor: _selectTitleColor];
+            defaultColor = _selectTitleColor;
+            
+            chineseColor = _selectTitleColor;
 
             _titleLabel.backgroundColor = (model.status & WYCalendarEndSelected) ? _endSelectBackColor : _selectBackColor;
             
@@ -176,12 +198,36 @@
         
     }else{
         
-        [_titleLabel setTextColor: _notCurrentMonthTitleColor];
+        defaultColor = _notCurrentMonthTitleColor;
+        
+        chineseColor = _notCurrentMonthTitleColor;
         
         _titleLabel.backgroundColor = _backColor;
         
         _titleLabel.layer.cornerRadius = 0;
     }
+    
+    NSString * day = model.day > 0 ? [NSString stringWithFormat:@"%zd",model.day] : @"";
+    
+    if (_showChineseDate) day = [NSString stringWithFormat:@"%@\n%@",day,model.date.ChineseDate];
+   
+    NSDictionary* titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                         defaultColor, NSForegroundColorAttributeName,
+                                         [UIFont boldSystemFontOfSize:_dayFontSize], NSFontAttributeName,
+                                         nil];
+    
+    NSMutableAttributedString * attr = [[NSMutableAttributedString alloc] initWithString:day attributes:titleTextAttributes];
+    
+    NSRange range = [day rangeOfString:model.date.ChineseDate];
+    
+    titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                           chineseColor, NSForegroundColorAttributeName,
+                           [UIFont systemFontOfSize:_dayFontSize - 6], NSFontAttributeName,
+                           nil];
+    
+    [attr addAttributes:titleTextAttributes range:range];
+    
+    _titleLabel.attributedText = attr;
 }
 
 @end

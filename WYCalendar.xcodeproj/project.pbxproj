@@ -106,16 +106,16 @@
 			children = (
 				CF0FAF3020BFE9DC0072C597 /* UIView+WYCategory.h */,
 				CF0FAF3120BFE9DC0072C597 /* UIView+WYCategory.m */,
+				CF0FAF3720BFE9DC0072C597 /* WYCalendarTool.h */,
+				CF0FAF3520BFE9DC0072C597 /* WYCalendarTool.m */,
+				CF0FAF3420BFE9DC0072C597 /* WYCalendarModel.h */,
+				CF0FAF2F20BFE9DC0072C597 /* WYCalendarModel.m */,
 				CF0FAF2E20BFE9DC0072C597 /* WYCalendarCollectionViewCell.h */,
 				CF0FAF3920BFE9DC0072C597 /* WYCalendarCollectionViewCell.m */,
 				CF0FAF2C20BFE9DC0072C597 /* WYCalendarHeaderView.h */,
 				CF0FAF3A20BFE9DC0072C597 /* WYCalendarHeaderView.m */,
-				CF0FAF3420BFE9DC0072C597 /* WYCalendarModel.h */,
-				CF0FAF2F20BFE9DC0072C597 /* WYCalendarModel.m */,
 				CF0FAF3220BFE9DC0072C597 /* WYCalendarMonthView.h */,
 				CF0FAF2D20BFE9DC0072C597 /* WYCalendarMonthView.m */,
-				CF0FAF3720BFE9DC0072C597 /* WYCalendarTool.h */,
-				CF0FAF3520BFE9DC0072C597 /* WYCalendarTool.m */,
 				CF0FAF3320BFE9DC0072C597 /* WYCalendarView.h */,
 				CF0FAF3820BFE9DC0072C597 /* WYCalendarView.m */,
 				CF0FAF3620BFE9DC0072C597 /* WYIcons.bundle */,
@@ -488,6 +488,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 659739RC84;
 				INFOPLIST_FILE = WYCalendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -504,6 +505,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 659739RC84;
 				INFOPLIST_FILE = WYCalendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
