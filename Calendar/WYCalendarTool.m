@@ -635,9 +635,9 @@ static int32_t solarTermsDay[]=
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     
-    NSDateComponents *weekdayComponents = [calendar components:NSCalendarUnitWeekday fromDate:self];
+    NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:self];
     
-    return [weekdayComponents weekday] >= 7 ? 6 : [weekdayComponents weekday];
+    return components.weekday;
 }
 - (NSDate *)previousMonthDate
 {

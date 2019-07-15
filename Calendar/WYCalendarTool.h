@@ -89,7 +89,7 @@ typedef NS_ENUM(NSUInteger, WYSelectType) {
  */
 - (NSInteger)dateYear;
 /**
- *  获得当前 NSDate 对象对应的星期
+ *  获得当前 NSDate 对象对应的星期,周日为1，周一为2，周二为3...以此类推
  */
 - (NSInteger)dateWeek;
 /**
