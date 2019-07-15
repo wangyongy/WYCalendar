@@ -416,8 +416,6 @@
         if (strongSelf->_cancelBlock) {
             strongSelf->_cancelBlock();
         }
-        
-        [weakSelf removeFromSuperview];
     }];
     
     tap.delegate = (id<UIGestureRecognizerDelegate>)self;
@@ -609,8 +607,6 @@
                     strongSelf->_confirmBlock(weakSelf.selectArray);
                 }
                 
-                [weakSelf removeFromSuperview];
-                
             }else if (strongSelf->_selectArray.count == 1){
                 
                 weakSelf.calendarHeaderView.isStartDate = NO;
@@ -630,8 +626,6 @@
                 
                 strongSelf->_cancelBlock();
             }
-            
-            [weakSelf removeFromSuperview];
             
         } color:_footerButtonColor];
         

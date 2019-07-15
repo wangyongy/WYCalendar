@@ -141,6 +141,8 @@
 
 - (void)setModel:(WYCalendarModel *)model
 {
+    _model = model;
+    
     CGFloat width = self.contentView.Width;
 
     _titleLabel.frame = CGRectMake((width/2 - _dayLabelSize/2), (width/2 - _dayLabelSize/2), (_dayLabelSize), (_dayLabelSize));

@@ -404,19 +404,19 @@ static int32_t solarTermsDay[]=
     
     NSMutableDictionary * dic = [NSMutableDictionary dictionary];
     
-    [dic setObject:@"母亲节" forKey:[NSString stringWithFormat:@"5-%ld",firstWeekday ? (15 - firstWeekday) : 8]];
+    [dic setObject:@"母亲节" forKey:[NSString stringWithFormat:@"5-%zd",firstWeekday ? (15 - firstWeekday) : 8]];
     
     date = [formatter dateFromString:[NSString stringWithFormat:@"%zd-06-01",year]];
     
     firstWeekday = [calendar ordinalityOfUnit:NSCalendarUnitWeekday inUnit:NSCalendarUnitWeekOfMonth forDate:date] - 1;
     
-    [dic setObject:@"父亲节" forKey:[NSString stringWithFormat:@"6-%ld",firstWeekday ? (22 - firstWeekday) : 15]];
+    [dic setObject:@"父亲节" forKey:[NSString stringWithFormat:@"6-%zd",firstWeekday ? (22 - firstWeekday) : 15]];
     
     date = [formatter dateFromString:[NSString stringWithFormat:@"%zd-11-01",year]];
     
     firstWeekday = [calendar ordinalityOfUnit:NSCalendarUnitWeekday inUnit:NSCalendarUnitWeekOfMonth forDate:date] - 1;
     
-    [dic setObject:@"感恩节" forKey:[NSString stringWithFormat:@"6-%ld",firstWeekday ? (29 - firstWeekday) : 21]];
+    [dic setObject:@"感恩节" forKey:[NSString stringWithFormat:@"6-%zd",firstWeekday ? (29 - firstWeekday) : 21]];
     
     return dic;
 }
