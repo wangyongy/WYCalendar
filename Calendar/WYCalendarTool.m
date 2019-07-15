@@ -399,24 +399,27 @@ static int32_t solarTermsDay[]=
     
     NSDate * date = [formatter dateFromString:[NSString stringWithFormat:@"%zd-05-01",year]];
     
-    // 默认一周第一天序号为 1 ，而日历中约定为 0 ，故需要减一
+    //公历5月第2个周日是母亲节
     NSInteger firstWeekday = [calendar ordinalityOfUnit:NSCalendarUnitWeekday inUnit:NSCalendarUnitWeekOfMonth forDate:date] - 1;
     
     NSMutableDictionary * dic = [NSMutableDictionary dictionary];
     
     [dic setObject:@"母亲节" forKey:[NSString stringWithFormat:@"5-%zd",firstWeekday ? (15 - firstWeekday) : 8]];
     
+    //公历6月第3个周日是父亲节
     date = [formatter dateFromString:[NSString stringWithFormat:@"%zd-06-01",year]];
     
     firstWeekday = [calendar ordinalityOfUnit:NSCalendarUnitWeekday inUnit:NSCalendarUnitWeekOfMonth forDate:date] - 1;
     
     [dic setObject:@"父亲节" forKey:[NSString stringWithFormat:@"6-%zd",firstWeekday ? (22 - firstWeekday) : 15]];
     
+    
+    //公历11月第4个周四是感恩节
     date = [formatter dateFromString:[NSString stringWithFormat:@"%zd-11-01",year]];
     
     firstWeekday = [calendar ordinalityOfUnit:NSCalendarUnitWeekday inUnit:NSCalendarUnitWeekOfMonth forDate:date] - 1;
     
-    [dic setObject:@"感恩节" forKey:[NSString stringWithFormat:@"6-%zd",firstWeekday ? (29 - firstWeekday) : 21]];
+    [dic setObject:@"感恩节" forKey:[NSString stringWithFormat:@"11-%zd",firstWeekday <= 4 ? (26 - firstWeekday) : (33 - firstWeekday)]];
     
     return dic;
 }
@@ -430,7 +433,7 @@ static int32_t solarTermsDay[]=
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     
-    NSDateComponents *components = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitWeekday fromDate:self];
+    NSDateComponents *components = [calendar components:NSCalendarUnitDay | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitWeekday fromDate:self];
     
     NSMutableDictionary *holiday = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                     

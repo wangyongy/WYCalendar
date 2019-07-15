@@ -79,15 +79,15 @@
         };
     }];
     
-    [view setUpDayCellStyle:^(UIColor *__autoreleasing *currentMonthTitleColor, UIColor *__autoreleasing *currentMonthChineseTitleColor, UIColor *__autoreleasing *todayTitleColor, UIColor *__autoreleasing *notCurrentMonthTitleColor, UIColor *__autoreleasing *selectTitleColor, UIColor *__autoreleasing *selectBackColor, UIColor *__autoreleasing *backColor, UIColor *__autoreleasing *endSelectBackColor, CGFloat *dayFontSize, CGFloat *dayLabelSize, BOOL *showAnimation, BOOL *showChineseDate) {
-      
+    [view setUpDayCellStyle:^(UIColor *__autoreleasing *currentMonthTitleColor, UIColor *__autoreleasing *currentMonthChineseTitleColor, UIColor *__autoreleasing *todayTitleColor, UIColor *__autoreleasing *notCurrentMonthTitleColor, UIColor *__autoreleasing *selectTitleColor, UIColor *__autoreleasing *weekendTitleColor, UIColor *__autoreleasing *selectBackColor, UIColor *__autoreleasing *backColor, UIColor *__autoreleasing *endSelectBackColor, CGFloat *dayFontSize, CGFloat *dayLabelSize, BOOL *showAnimation, BOOL *showChineseDate) {
+        
         *dayFontSize = 17;
         
         *currentMonthTitleColor = [UIColor blackColor];
         
         *dayLabelSize = self.view.frame.size.width/7*0.95;
         
-//        *showChineseDate = NO;
+        *weekendTitleColor = [UIColor blueColor];
     }];
     
     [self.view addSubview:view];

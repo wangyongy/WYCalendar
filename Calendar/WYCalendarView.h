@@ -90,6 +90,7 @@
  *todayTitleColor;              今天文字颜色
  *notCurrentMonthTitleColor;    非当前月份日期文字颜色
  *selectTitleColor;             选中后文字颜色
+ *weekendTitleColor;             周末文字颜色
  *selectBackColor;              选中后文字背景颜色
  *selectBackColor;              结束选中后文字背景颜色
  *selectBackColor;              文字背景颜色
@@ -100,8 +101,7 @@
  
  @param daySettingBlock         设置日期视图属性
  */
-- (void)setUpDayCellStyle:(void(^)(UIColor ** currentMonthTitleColor,UIColor ** currentMonthChineseTitleColor,UIColor ** todayTitleColor,UIColor ** notCurrentMonthTitleColor,UIColor ** selectTitleColor,UIColor ** selectBackColor,UIColor ** backColor,UIColor ** endSelectBackColor,CGFloat *dayFontSize,CGFloat *dayLabelSize,BOOL *showAnimation,BOOL *showChineseDate))daySettingBlock;
-
+- (void)setUpDayCellStyle:(void(^)(UIColor ** currentMonthTitleColor,UIColor ** currentMonthChineseTitleColor,UIColor ** todayTitleColor,UIColor ** notCurrentMonthTitleColor,UIColor ** selectTitleColor,UIColor ** weekendTitleColor,UIColor ** selectBackColor,UIColor ** backColor,UIColor ** endSelectBackColor,CGFloat *dayFontSize,CGFloat *dayLabelSize,BOOL *showAnimation,BOOL *showChineseDate))daySettingBlock;
 
 @end
 

@@ -26,6 +26,8 @@
     
     UIColor * _selectTitleColor;                    //选中后文字颜色
     
+    UIColor * _weekendTitleColor;                    //周末文字颜色
+    
     UIColor * _backColor;                           //文字背景颜色
     
     UIColor * _selectBackColor;                     //选中后文字背景颜色
@@ -38,7 +40,7 @@
     
     BOOL      _showAnimation;                       //选中后是否展示动画
     
-    BOOL      _showChineseDate;                      //是否显示农历日期
+    BOOL      _showChineseDate;                     //是否显示农历日期
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -59,7 +61,7 @@
     return self;
 }
 
-- (void)setUpDayCellStyle:(void(^)(UIColor ** currentMonthTitleColor,UIColor ** currentMonthChineseTitleColor,UIColor ** todayTitleColor,UIColor ** notCurrentMonthTitleColor,UIColor ** selectTitleColor,UIColor ** selectBackColor,UIColor ** backColor,UIColor ** endSelectBackColor,CGFloat *dayFontSize,CGFloat *dayLabelSize,BOOL *showAnimation,BOOL *showChineseDate))daySettingBlock
+- (void)setUpDayCellStyle:(void(^)(UIColor ** currentMonthTitleColor,UIColor ** currentMonthChineseTitleColor,UIColor ** todayTitleColor,UIColor ** notCurrentMonthTitleColor,UIColor ** selectTitleColor,UIColor ** weekendTitleColor,UIColor ** selectBackColor,UIColor ** backColor,UIColor ** endSelectBackColor,CGFloat *dayFontSize,CGFloat *dayLabelSize,BOOL *showAnimation,BOOL *showChineseDate))daySettingBlock
 {
     UIColor * currentMonthTitleColor =      _currentMonthTitleColor;              //当前月份日期文字颜色
     
@@ -70,6 +72,8 @@
     UIColor * notCurrentMonthTitleColor =   _notCurrentMonthTitleColor;           //非当前月份日期文字颜色
     
     UIColor * selectTitleColor =            _selectTitleColor;                    //选中后文字颜色
+    
+    UIColor * weekendTitleColor =            _weekendTitleColor;                   //周末文字颜色
     
     UIColor * selectBackColor =             _selectBackColor;                     //选中后文字背景颜色
     
@@ -86,7 +90,7 @@
     BOOL      showChineseDate =             _showChineseDate;                     //是否显示农历日期
     
     if (daySettingBlock) {
-    daySettingBlock(&currentMonthTitleColor,&currentMonthChineseTitleColor,&todayTitleColor,&notCurrentMonthTitleColor,&selectTitleColor,&selectBackColor,&backColor,&endSelectBackColor,&dayFontSize,&dayLabelSize,&showAnimation,&showChineseDate);
+    daySettingBlock(&currentMonthTitleColor,&currentMonthChineseTitleColor,&todayTitleColor,&notCurrentMonthTitleColor,&selectTitleColor,&weekendTitleColor,&selectBackColor,&backColor,&endSelectBackColor,&dayFontSize,&dayLabelSize,&showAnimation,&showChineseDate);
         
         _currentMonthTitleColor =           currentMonthTitleColor;
         
@@ -97,6 +101,8 @@
         _notCurrentMonthTitleColor =        notCurrentMonthTitleColor;
         
         _selectTitleColor =                 selectTitleColor;
+        
+        _weekendTitleColor =                weekendTitleColor;
         
         _selectBackColor =                  selectBackColor;
         
@@ -127,6 +133,8 @@
     _notCurrentMonthTitleColor = WYUIColorFromRGB(0x999999);
     
     _selectTitleColor = WYUIColorFromRGB(0xffffff);
+    
+    _weekendTitleColor = _currentMonthTitleColor;
     
     _backColor = WYUIColorFromRGB(0xffffff);
     
@@ -196,6 +204,14 @@
             _titleLabel.backgroundColor = _backColor;
             
             _titleLabel.layer.cornerRadius = 0;
+        }
+        
+        //周末
+        if (model.date.dateWeek == 1 || model.date.dateWeek == 7) {
+            
+            defaultColor = _weekendTitleColor;
+            
+            chineseColor = _weekendTitleColor;
         }
         
     }else{
