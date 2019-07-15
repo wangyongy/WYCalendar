@@ -85,7 +85,8 @@
         
         *currentMonthTitleColor = [UIColor blackColor];
         
-        *dayLabelSize = self.view.frame.size.width/7*0.95;
+        *dayLabelSize = self.view.frame.size.
+        width/7*0.95;
         
         *weekendTitleColor = [UIColor blueColor];
     }];

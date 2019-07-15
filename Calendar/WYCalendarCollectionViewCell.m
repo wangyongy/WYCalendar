@@ -172,6 +172,14 @@
             chineseColor = _todayTitleColor;
         }
         
+        //周末
+        if (model.date.dateWeek == 1 || model.date.dateWeek == 7) {
+            
+            defaultColor = _weekendTitleColor;
+            
+            chineseColor = _weekendTitleColor;
+        }
+        
         if ((model.status & WYCalendarStartSelected) || (model.status & WYCalendarEndSelected)) {
 
             _titleLabel.layer.cornerRadius = _titleLabel.Width/2;
@@ -204,14 +212,6 @@
             _titleLabel.backgroundColor = _backColor;
             
             _titleLabel.layer.cornerRadius = 0;
-        }
-        
-        //周末
-        if (model.date.dateWeek == 1 || model.date.dateWeek == 7) {
-            
-            defaultColor = _weekendTitleColor;
-            
-            chineseColor = _weekendTitleColor;
         }
         
     }else{
