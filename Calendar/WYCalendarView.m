@@ -555,7 +555,7 @@
         
         NSInteger selectIndex = selectModel.firstWeekday + selectModel.day - 1;
         
-        self.currentDate = self.dataArray[selectIndex].date.weekDate;
+        self.currentDate = self.dataArray[selectIndex].date;
     }
     
     [self reloadData];
