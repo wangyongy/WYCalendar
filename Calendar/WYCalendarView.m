@@ -8,9 +8,11 @@
 
 #import "WYCalendarView.h"
 #import "WYCalendarMonthView.h"
-#import "WYCalendarCollectionViewCell.h"
 #import "WYCalendarHeaderView.h"
 #import "UIView+WYCategory.h"
+#import "WYCalendarCollectionViewCell.h"
+#import "WYCalendarMonthCollectionViewCell.h"
+
 @interface WYCalendarView ()
 
 {
@@ -78,17 +80,25 @@
 
 @property (nonatomic, strong)UIView *calendarWeekView;                   //周
 
-@property (nonatomic, strong)UICollectionView *collectionView;           //日历
+//@property (nonatomic, strong)UICollectionView *mainCollectionView;           //总日历
+
+@property (nonatomic, strong)UICollectionView *collectionView;           //每月日历
 
 @property (nonatomic, strong)UIView *calendarBackView;                   //日历视图背景
 
 #pragma mark --- data
 
-@property(nonatomic,strong)NSDate *currentMonthDate;                     //当月的日期
+@property(nonatomic,strong)NSDate *currentDate;                     //当月的日期
 
-@property (nonatomic, strong)NSMutableArray * dataArray;                 //数据数组
+@property (nonatomic, strong)NSMutableArray <WYCalendarModel *>* dataArray;                 //数据数组
 
-@property (nonatomic, strong)NSMutableArray * selectArray;               //选中日期数组
+@property (nonatomic, strong)NSMutableArray <WYCalendarModel *>* previousDataArray;         //上个数据数组
+
+@property (nonatomic, strong)NSMutableArray <WYCalendarModel *>* nextDataArray;             //下个数据数组
+
+@property (nonatomic, strong)NSMutableArray <WYCalendarModel *>* selectArray;               //选中日期数组
+
+@property(nonatomic,assign)BOOL showWeekData;                          //按周显示
 
 @end
 
@@ -236,6 +246,8 @@
         [self setUpGestures];
         
         [self reloadData];
+        
+        [self.collectionView reloadData];
     }
 }
 - (void)setupViews
@@ -253,6 +265,8 @@
     [_calendarBackView addSubview:self.calendarFooterView];
     
     _calendarBackView.Height = _calendarFooterView.Bottom;
+    
+    [self.collectionView setContentOffset:CGPointMake(self.frame.size.width, 0) animated:NO];
     
     if (_isShowCalendarShadow) {
         /**
@@ -313,49 +327,60 @@
     
     _setCustomCellBlock = nil;
 }
-- (void)reloadData
+- (NSMutableArray *)loadWeekData:(NSDate *)weekDate
 {
-    self.dataArray = [NSMutableArray array];
-
-    if (_selectType != WYSelectTypeOne) {
+    NSMutableArray * dataArray = [NSMutableArray array];
+    
+    NSDate * date = weekDate.weekDate.zeroDayDate;
+    
+    for (NSInteger i = 0; i < 7; i++) {
         
-        [_selectArray removeAllObjects];
+        WYCalendarModel * model = [WYCalendarModel modelWithDate:date];
         
-    }else if (_selectArray.count){
+        date = date.nextDayDate;
         
-        WYCalendarModel * selectModel = _selectArray.firstObject;
+        model.status |= WYCalendarCurrentMonth;
         
-        if (self.currentMonthDate == nil) {
+        for (WYCalendarModel * selectModel in _selectArray) {
             
-           self.currentMonthDate = selectModel.date;
+            if ([model isEqual:selectModel] && (model.status & WYCalendarCurrentMonth)) {
+                
+                selectModel.status |= WYCalendarCurrentMonth;
+                
+                model.status = selectModel.status;
+            }
         }
+        
+        [dataArray addObject:model];
     }
     
-    if (self.currentMonthDate == nil) {
-        
-        self.currentMonthDate = [NSDate date];  //默认显示当前月份
-    }
+    return dataArray;
+}
+- (NSMutableArray *)loadMonthData:(NSDate *)monthDate
+{
+    NSMutableArray * dataArray = [NSMutableArray array];
+    
     /**
-     一共6x7=42个model
+     一共最多6x7=42个model
      */
     for (NSInteger i = 0; i < 42; i++) {
         
         /**
          以当前日期初始化日期模型，再重新为day属性赋值
          */
-        WYCalendarModel * model = [WYCalendarModel modelWithDate:self.currentMonthDate];
+        WYCalendarModel * model = [WYCalendarModel modelWithDate:monthDate];
         
         //上个月的日期
         if (i < model.firstWeekday) {
             
-            model.day = _isOnlyShowCurrentMonth ? 0 : ([self.currentMonthDate.previousMonthDate totalDaysInMonth] - (model.firstWeekday - i) + 1);
+            model.day = _isOnlyShowCurrentMonth ? 0 : ([monthDate.previousMonthDate totalDaysInMonth] - (model.firstWeekday - i) + 1);
             
-            model.month = _currentMonthDate.previousMonthDate.dateMonth;
+            model.month = monthDate.previousMonthDate.dateMonth;
             
-            model.year = _currentMonthDate.previousMonthDate.dateYear;
+            model.year = monthDate.previousMonthDate.dateYear;
         }
         //当月的日期
-        else if (i < (model.firstWeekday + [self.currentMonthDate totalDaysInMonth])) {
+        else if (i < (model.firstWeekday + [monthDate totalDaysInMonth])) {
             
             model.day = i - model.firstWeekday + 1;
             
@@ -364,11 +389,11 @@
         //下月的日期
         else {
             
-            model.day = _isOnlyShowCurrentMonth ? 0 : (i - model.firstWeekday - [self.currentMonthDate totalDaysInMonth] + 1);
+            model.day = _isOnlyShowCurrentMonth ? 0 : (i - model.firstWeekday - [monthDate totalDaysInMonth] + 1);
             
-            model.month = _currentMonthDate.nextMonthDate.dateMonth;
+            model.month = monthDate.nextMonthDate.dateMonth;
             
-            model.year = _currentMonthDate.nextMonthDate.dateYear;
+            model.year = monthDate.nextMonthDate.dateYear;
         }
         
         for (WYCalendarModel * selectModel in _selectArray) {
@@ -386,13 +411,52 @@
             break;
         }
         
-        [self.dataArray addObject:model];
+        [dataArray addObject:model];
     }
     
-    /**
-     更新UI
-     */
-    [self.collectionView reloadData];
+    return dataArray;
+}
+- (void)loadDataArray
+{
+    if (_showWeekData) {
+        
+        self.dataArray = [NSMutableArray arrayWithArray:[self loadWeekData:self.currentDate]];
+        
+        self.previousDataArray = [NSMutableArray arrayWithArray:[self loadWeekData:self.currentDate.previousWeekDate]];
+        
+        self.nextDataArray = [NSMutableArray arrayWithArray:[self loadWeekData:self.currentDate.nextWeekDate]];
+        
+        return;
+    }
+    
+    self.dataArray = [NSMutableArray arrayWithArray:[self loadMonthData:self.currentDate]];
+    
+    self.previousDataArray = [NSMutableArray arrayWithArray:[self loadMonthData:self.currentDate.previousMonthDate]];
+    
+    self.nextDataArray = [NSMutableArray arrayWithArray:[self loadMonthData:self.currentDate.nextMonthDate]];
+}
+- (void)reloadData
+{
+    if (_selectType != WYSelectTypeOne) {
+        
+        [_selectArray removeAllObjects];
+        
+    }else if (_selectArray.count){
+        
+        WYCalendarModel * selectModel = _selectArray.firstObject;
+        
+        if (self.currentDate == nil) {
+            
+           self.currentDate = selectModel.date;
+        }
+    }
+    
+    if (self.currentDate == nil) {
+        
+        self.currentDate = [NSDate date];  //默认显示当前月份
+    }
+    
+    [self loadDataArray];
     
     if (_selectType == WYSelectTypeOne && _selectArray.count) {
         
@@ -401,12 +465,32 @@
         self.calendarHeaderView.model = selectModel;
     }
     
-    self.calendarMonthView.model = [WYCalendarModel modelWithDate:self.currentMonthDate];
+    self.calendarMonthView.model = [WYCalendarModel modelWithDate:self.currentDate];
 }
 #pragma mark - 手势、动画
 
 - (void)setUpGestures
 {
+    //添加上滑下滑手势
+    UISwipeGestureRecognizer * upSwipe = [UISwipeGestureRecognizer initWithBlockAction:^(UIGestureRecognizer *sender) {
+        
+        [self turnToUpOrDown:YES];
+    }];
+    
+    UISwipeGestureRecognizer * downSwipe = [UISwipeGestureRecognizer initWithBlockAction:^(UIGestureRecognizer *sender) {
+        
+        [self turnToUpOrDown:NO];
+    }];
+    
+    upSwipe.direction = UISwipeGestureRecognizerDirectionUp;
+    
+    downSwipe.direction = UISwipeGestureRecognizerDirectionDown;
+    
+    [self addGestureRecognizer:upSwipe];
+    
+    [self addGestureRecognizer:downSwipe];
+    
+    return;
     WYWS(weakSelf)
     
     UITapGestureRecognizer * tap = [UITapGestureRecognizer initWithBlockAction:^(UIGestureRecognizer *sender) {
@@ -441,6 +525,46 @@
     
     [self addGestureRecognizer:tap];
 }
+- (void)turnToUpOrDown:(BOOL)up
+{
+    _showWeekData = up;
+    
+    if (!up) {
+        
+        NSLog(@"下滑");
+        
+        if (self.dataArray.count > 7) return;
+        
+        [self reloadData];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            [self.collectionView reloadData];
+        }];
+        
+        return;
+    }
+    
+    NSLog(@"上滑");
+    
+    if (7 == self.dataArray.count) return;
+    
+    WYCalendarModel * selectModel = [self.selectArray firstObject];
+
+    if (selectModel != nil) {
+        
+        NSInteger selectIndex = selectModel.firstWeekday + selectModel.day - 1;
+        
+        self.currentDate = self.dataArray[selectIndex].date.weekDate;
+    }
+    
+    [self reloadData];
+    
+    [UIView animateWithDuration: 0.5 animations:^{
+        
+        [self.collectionView reloadData];
+    }];
+}
 /**
  左右切换
  
@@ -467,11 +591,13 @@
         [self.collectionView.layer addAnimation:catransition forKey:nil];
     }
     
-    self.currentMonthDate = left ? _currentMonthDate.previousMonthDate : _currentMonthDate.nextMonthDate;
+    self.currentDate = left ? _currentDate.previousMonthDate : _currentDate.nextMonthDate;
     
     [self reloadData];
     
-    if (_changeMonthBlock) _changeMonthBlock(_currentMonthDate);
+    [self.collectionView reloadData];
+    
+    if (_changeMonthBlock) _changeMonthBlock(_currentDate);
 }
 
 #pragma mark - 懒加载
@@ -562,30 +688,34 @@
 - (UICollectionView *)collectionView
 {
     if (!_collectionView) {
-        
+
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
-        
+
         flowLayout.minimumInteritemSpacing = 0.0f;
-        
+
         flowLayout.minimumLineSpacing = 0.0f;
+
+        flowLayout.itemSize = CGSizeMake(self.Width, 6 * _cellWidth);
         
-        flowLayout.itemSize = CGSizeMake(_cellWidth, _cellWidth);
-        
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, self.calendarWeekView.Bottom, _calendarBackView.Width, 6 * _cellWidth) collectionViewLayout:flowLayout];
-        
+
         _collectionView.delegate = (id<UICollectionViewDelegate>)self;
-        
+
         _collectionView.dataSource = (id<UICollectionViewDataSource>)self;
-        
+
         _collectionView.showsVerticalScrollIndicator = NO;
-        
+
         _collectionView.showsHorizontalScrollIndicator = NO;
         
-        [_collectionView registerClass:[WYCalendarCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+        _collectionView.pagingEnabled = YES;
         
+        [_collectionView registerClass:[WYCalendarMonthCollectionViewCell class] forCellWithReuseIdentifier:@"collecitonViewCell"];
+
         _collectionView.backgroundColor = _backColor;
     }
-    
+
     return _collectionView;
 }
 - (UIView *)calendarFooterView
@@ -612,8 +742,6 @@
                 weakSelf.calendarHeaderView.isStartDate = NO;
                 
                 weakSelf.calendarHeaderView.model = nil;
-                
-                //                [weakSelf reloadData];
             }
             
         } color:_footerButtonColor];
@@ -663,34 +791,82 @@
     return !CGRectContainsPoint(_calendarBackView.frame, [touch locationInView:self]);
 }
 #pragma mark - UICollectionViewDelegate
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return self.dataArray.count;
+    return 3;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellIndentifier = @"cell";
+    NSString *cellIndentifier = @"collecitonViewCell";
     
-    WYCalendarCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIndentifier forIndexPath:indexPath];
+    WYCalendarMonthCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIndentifier forIndexPath:indexPath];
     
     if (!cell) {
         
-        cell = [[WYCalendarCollectionViewCell alloc] init];
+        cell = [[WYCalendarMonthCollectionViewCell alloc] init];
     }
     
-    [cell setUpDayCellStyle:_daySettingBlock];
+    cell.contentView.backgroundColor = cell.backgroundColor = _backColor;
     
-    cell.model = self.dataArray[indexPath.row];
+    __weak UICollectionView * view = cell.collectionView;
     
-    if (_setCustomCellBlock) {
-        
-        _setCustomCellBlock(cell,cell.model.date);
+    cell.selectBlock = ^(NSIndexPath * _Nonnull index) {
+      
+        [self daycollectionView:view didSelectItemAtIndexPath:index];
+    };
+    
+    switch (indexPath.row) {
+        case 0:
+            cell.dataArray = self.previousDataArray;
+            break;
+        case 1:
+            cell.dataArray = self.dataArray;
+            break;
+        case 2:
+            cell.dataArray = self.nextDataArray;
+            break;
+            
+        default:
+            break;
     }
+    
+    cell.calendarView = self;
     
     return cell;
 }
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+#pragma mark - scrollViewDelegate
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [UIView performWithoutAnimation:^{
+       
+        if (self.collectionView.contentOffset.x < self.frame.size.width || self.collectionView.contentOffset.x >= self.frame.size.width*2) {
+            
+            if (self.collectionView.contentOffset.x < self.frame.size.width) {
+                
+                self.currentDate = self.showWeekData ? self.currentDate.previousWeekDate : self.currentDate.previousMonthDate;
+                
+            }else{
+             
+                self.currentDate = self.showWeekData ? self.currentDate.nextWeekDate : self.currentDate.nextMonthDate;
+            }
+            
+            if (self->_changeMonthBlock) self->_changeMonthBlock(self->_currentDate);
+            
+            [self reloadData];
+            
+            [self.collectionView reloadData];
+            
+            [self.collectionView setContentOffset:CGPointMake(self.frame.size.width, 0) animated:NO];
+        }
+    }];
+}
+#pragma mark -
+- (void)daycollectionView:(UICollectionView *)daycollectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row >= self.dataArray.count)return;
     
@@ -698,11 +874,11 @@
     
     if (!(model.status & WYCalendarCurrentMonth)){
         
-        BOOL isPrevious = model.month == _currentMonthDate.previousMonthDate.dateMonth;
+        BOOL isPrevious = model.month == _currentDate.previousMonthDate.dateMonth;
         
         [self turnToLeftOrRight:isPrevious];
         
-        [self collectionView:collectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForRow:isPrevious ? (self.dataArray.count - 7 + indexPath.row) : indexPath.row%7 inSection:0]];
+        [self collectionView:daycollectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForRow:isPrevious ? (self.dataArray.count - 7 + indexPath.row) : indexPath.row%7 inSection:0]];
         
         return;
     }
@@ -746,12 +922,11 @@
                 }
             }
         }];
-        
     }
     
     self.calendarHeaderView.model = model;
     
-    [collectionView reloadItemsAtIndexPaths:reloadArray];
+    [daycollectionView reloadItemsAtIndexPaths:reloadArray];
     
     for (WYCalendarModel * selectModel in _selectArray) {
         
@@ -775,6 +950,7 @@
     }
     
     if (!_isShowFooterView) {
+        
         if (_confirmBlock) {
             _confirmBlock(self.selectArray);
         }

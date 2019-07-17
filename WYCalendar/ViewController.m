@@ -50,7 +50,7 @@
         
         *weekTitleType = WeekTitleTypeChineseShort;
         
-        *isShowMonthView = NO;
+        *isShowMonthView = YES;
         
         *changeMonthBlock = ^(NSDate *monthDate){
             

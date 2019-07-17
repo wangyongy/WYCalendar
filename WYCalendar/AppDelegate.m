@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "WYCalendarTool.h"
 @interface AppDelegate ()
 
 @end
@@ -20,6 +20,9 @@
     
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:self.window.rootViewController];
     
+    NSDate * date = [NSDate date];
+    
+    NSLog(@"%@",date.weekDate);
     
     return YES;
 }

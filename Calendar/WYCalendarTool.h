@@ -101,7 +101,31 @@ typedef NS_ENUM(NSUInteger, WYSelectType) {
  *  获得当前 NSDate 对象的下个月的某一天（此处定为15号）的 NSDate 对象
  */
 - (NSDate *)nextMonthDate;
+/**
+ *  获得当前 NSDate 对象的前一天的 NSDate 对象
+ */
+- (NSDate *)previousDayDate;
+/**
+ *  获得当前 NSDate 对象的当天零点的 NSDate 对象
+ */
+- (NSDate *)zeroDayDate;
+/**
+ *  获得当前 NSDate 对象的后一天的 NSDate 对象
+ */
+- (NSDate *)nextDayDate;
 
+/**
+ *  获得当前 NSDate 对象的前一周第一天的 NSDate 对象
+ */
+- (NSDate *)previousWeekDate;
+/**
+ *  获得当前 NSDate 对象的当前周的第一天的 NSDate 对象
+ */
+- (NSDate *)weekDate;
+/**
+ *  获得当前 NSDate 对象的后一周第一天的 NSDate 对象
+ */
+- (NSDate *)nextWeekDate;
 /**
  *  获得当前 NSDate 对象对应的月份的总天数
  */

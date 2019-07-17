@@ -691,6 +691,40 @@ static int32_t solarTermsDay[]=
     return nextDate;
 }
 
+- (NSDate *)previousDayDate
+{
+    return [NSDate dateWithTimeIntervalSince1970:[self.zeroDayDate timeIntervalSince1970] - 24*60*60];
+}
+
+- (NSDate *)nextDayDate
+{
+    return [NSDate dateWithTimeIntervalSince1970:[self.zeroDayDate timeIntervalSince1970] + 24*60*60];
+}
+- (NSDate *)previousWeekDate
+{
+    return [NSDate dateWithTimeIntervalSince1970:[self.weekDate timeIntervalSince1970] - 7*24*60*60];
+}
+- (NSDate *)weekDate
+{
+     return [NSDate dateWithTimeIntervalSince1970:[self.zeroDayDate timeIntervalSince1970] - (self.dateWeek - 1)*24*60*60];
+}
+- (NSDate *)nextWeekDate
+{
+    return [NSDate dateWithTimeIntervalSince1970:[self.weekDate timeIntervalSince1970] + 7*24*60*60];
+}
+- (NSDate *)zeroDayDate
+{
+    NSDateFormatter * formatter = [[NSDateFormatter alloc ] init];
+    
+    [formatter setDateFormat:@"YYYY-MM-dd"];
+    
+    NSString * dateStr = [NSString stringWithFormat:@"%@ 00:00:00",[formatter stringFromDate:self]];
+    
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    
+    return [formatter dateFromString:dateStr];
+}
+
 - (NSInteger)totalDaysInMonth
 {
     NSInteger totalDays = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self].length;
