@@ -51,6 +51,8 @@
     
     UIColor * _footerButtonColor;                                        //底部按钮文字颜色
     
+    BOOL _isAddUpDownGesture;                                            //是否添加上下滑动手势
+    
     BOOL _isShowCalendarShadow;                                          //是否显示阴影
     
     BOOL _isShowSwipeAnimation;                                          //是否显示滑动动画
@@ -113,7 +115,7 @@
     
     return view;
 }
-- (void)setUpDisplayStyle:(void(^)(dispatch_block_t *cancelBlock,void(^*changeMonthBlock)(NSDate * monthDate) ,UIColor ** backColor,WeekTitleType *weekTitleType,CGFloat *weekFontSize,UIColor **weekTitleColor,NSArray ** footerTitleArray,CGFloat *footerViewHeight,CGFloat *footerButtonWidth,CGFloat *footerButtonFontSize,UIColor ** footerButtonColor,BOOL *isShowCalendarShadow,BOOL *isShowSwipeAnimation,BOOL *isOnlyShowCurrentMonth,BOOL *isShowHeaderView,BOOL *isShowFooterView,BOOL *isShowMonthView,BOOL *isShowWeekView,WYSelectType *selectType,void(^*setCustomCellBlock)(UICollectionViewCell *cell,NSDate * date)))BaseSettingBlock
+- (void)setUpDisplayStyle:(void(^)(dispatch_block_t *cancelBlock,void(^*changeMonthBlock)(NSDate * monthDate) ,UIColor ** backColor,WeekTitleType *weekTitleType,CGFloat *weekFontSize,UIColor **weekTitleColor,NSArray ** footerTitleArray,CGFloat *footerViewHeight,CGFloat *footerButtonWidth,CGFloat *footerButtonFontSize,UIColor ** footerButtonColor,BOOL *isShowCalendarShadow,BOOL *isAddUpDownGesture,BOOL *isShowSwipeAnimation,BOOL *isOnlyShowCurrentMonth,BOOL *isShowHeaderView,BOOL *isShowFooterView,BOOL *isShowMonthView,BOOL *isShowWeekView,WYSelectType *selectType,void(^*setCustomCellBlock)(UICollectionViewCell *cell,NSDate * date)))BaseSettingBlock
 {
     
     dispatch_block_t cancelBlock = _cancelBlock;                                            //取消的回调
@@ -140,6 +142,8 @@
     
     BOOL isShowCalendarShadow = _isShowCalendarShadow;                                      //是否显示阴影
     
+    BOOL isAddUpDownGesture = _isAddUpDownGesture;                                          //是否添加上下滑动手势
+    
     BOOL isShowSwipeAnimation = _isShowSwipeAnimation;                                      //是否显示滑动动画
     
     BOOL isOnlyShowCurrentMonth = _isOnlyShowCurrentMonth;                                  //只显示属于当前月份的日期
@@ -157,7 +161,7 @@
     void(^setCustomCellBlock)(UICollectionViewCell *cell,NSDate * date) = _setCustomCellBlock;//自定义cell
     
     if (BaseSettingBlock) {
-        BaseSettingBlock(&cancelBlock,&changeMonthBlock,&backColor,&weekTitleType,&weekFontSize,&weekTitleColor,&footerTitleArray,&footerViewHeight,&footerButtonWidth,&footerButtonFontSize,&footerButtonColor,&isShowCalendarShadow,&isShowSwipeAnimation,&isOnlyShowCurrentMonth,&isShowHeaderView,&isShowFooterView,&isShowMonthView,&isShowWeekView,&selectType,&setCustomCellBlock);
+        BaseSettingBlock(&cancelBlock,&changeMonthBlock,&backColor,&weekTitleType,&weekFontSize,&weekTitleColor,&footerTitleArray,&footerViewHeight,&footerButtonWidth,&footerButtonFontSize,&footerButtonColor,&isShowCalendarShadow,&isAddUpDownGesture,&isShowSwipeAnimation,&isOnlyShowCurrentMonth,&isShowHeaderView,&isShowFooterView,&isShowMonthView,&isShowWeekView,&selectType,&setCustomCellBlock);
         
         _cancelBlock = cancelBlock;
         
@@ -182,6 +186,8 @@
         _footerButtonColor = footerButtonColor;
         
         _isShowCalendarShadow = isShowCalendarShadow;
+        
+        _isAddUpDownGesture = isAddUpDownGesture;
         
         _isShowSwipeAnimation = isShowSwipeAnimation;
         
@@ -266,7 +272,7 @@
     
     _calendarBackView.Height = _calendarFooterView.Bottom;
     
-    [self.collectionView setContentOffset:CGPointMake(self.frame.size.width, 0) animated:NO];
+    [self.collectionView setContentOffset:CGPointMake(self.collectionView.frame.size.width, 0) animated:NO];
     
     if (_isShowCalendarShadow) {
         /**
@@ -471,6 +477,11 @@
 
 - (void)setUpGestures
 {
+    if (!_isAddUpDownGesture) {
+        
+        return;
+    }
+    
     //添加上滑下滑手势
     UISwipeGestureRecognizer * upSwipe = [UISwipeGestureRecognizer initWithBlockAction:^(UIGestureRecognizer *sender) {
         
@@ -489,41 +500,6 @@
     [self addGestureRecognizer:upSwipe];
     
     [self addGestureRecognizer:downSwipe];
-    
-    return;
-    WYWS(weakSelf)
-    
-    UITapGestureRecognizer * tap = [UITapGestureRecognizer initWithBlockAction:^(UIGestureRecognizer *sender) {
-        
-        WYST(strongSelf)
-        
-        if (strongSelf->_cancelBlock) {
-            strongSelf->_cancelBlock();
-        }
-    }];
-    
-    tap.delegate = (id<UIGestureRecognizerDelegate>)self;
-    
-    //添加左滑右滑手势
-    UISwipeGestureRecognizer * leftSwipe = [UISwipeGestureRecognizer initWithBlockAction:^(UIGestureRecognizer *sender) {
-        
-        
-        [weakSelf turnToLeftOrRight:YES];
-    }];
-    
-    UISwipeGestureRecognizer * rightSwipe = [UISwipeGestureRecognizer initWithBlockAction:^(UIGestureRecognizer *sender) {
-        
-        
-        [weakSelf turnToLeftOrRight:NO];
-    }];
-    
-    rightSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
-    
-    [self.collectionView addGestureRecognizer:leftSwipe];
-    
-    [self.collectionView addGestureRecognizer:rightSwipe];
-    
-    [self addGestureRecognizer:tap];
 }
 - (void)turnToUpOrDown:(BOOL)up
 {
@@ -695,7 +671,7 @@
 
         flowLayout.minimumLineSpacing = 0.0f;
 
-        flowLayout.itemSize = CGSizeMake(self.Width, 6 * _cellWidth);
+        flowLayout.itemSize = CGSizeMake(_calendarBackView.Width, 6 * _cellWidth);
         
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 
@@ -844,9 +820,9 @@
 {
     [UIView performWithoutAnimation:^{
        
-        if (self.collectionView.contentOffset.x < self.frame.size.width || self.collectionView.contentOffset.x >= self.frame.size.width*2) {
+        if (self.collectionView.contentOffset.x < self.collectionView.frame.size.width || self.collectionView.contentOffset.x >= self.collectionView.frame.size.width*2) {
             
-            if (self.collectionView.contentOffset.x < self.frame.size.width) {
+            if (self.collectionView.contentOffset.x < self.collectionView.frame.size.width) {
                 
                 self.currentDate = self.showWeekData ? self.currentDate.previousWeekDate : self.currentDate.previousMonthDate;
                 
@@ -861,7 +837,7 @@
             
             [self.collectionView reloadData];
             
-            [self.collectionView setContentOffset:CGPointMake(self.frame.size.width, 0) animated:NO];
+            [self.collectionView setContentOffset:CGPointMake(self.collectionView.frame.size.width, 0) animated:NO];
         }
     }];
 }

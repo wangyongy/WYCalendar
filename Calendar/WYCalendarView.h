@@ -35,6 +35,7 @@
  *footerButtonFontSize;         底部按钮文字尺寸
  *footerButtonColor;            底部按钮文字颜色
  *isShowCalendarShadow;         是否显示阴影
+ *isAddUpDownGesture;         是否添加上下滑动手势
  *isShowSwipeAnimation;         是否显示滑动动画
  *isOnlyShowCurrentMonth;       只显示属于当前月份的日期
  *isShowHeaderView;             是否显示头部视图
@@ -46,7 +47,7 @@
  
  @param BaseSettingBlock        设置基础属性
  */
-- (void)setUpDisplayStyle:(void(^)(dispatch_block_t *cancelBlock,void(^*changeMonthBlock)(NSDate * monthDate) ,UIColor ** backColor,WeekTitleType *weekTitleType,CGFloat *weekFontSize,UIColor **weekTitleColor,NSArray ** footerTitleArray,CGFloat *footerViewHeight,CGFloat *footerButtonWidth,CGFloat *footerButtonFontSize,UIColor ** footerButtonColor,BOOL *isShowCalendarShadow,BOOL *isShowSwipeAnimation,BOOL *isOnlyShowCurrentMonth,BOOL *isShowHeaderView,BOOL *isShowFooterView,BOOL *isShowMonthView,BOOL *isShowWeekView,WYSelectType *selectType,void(^*setCustomCellBlock)(UICollectionViewCell *cell,NSDate * date)))BaseSettingBlock;
+- (void)setUpDisplayStyle:(void(^)(dispatch_block_t *cancelBlock,void(^*changeMonthBlock)(NSDate * monthDate) ,UIColor ** backColor,WeekTitleType *weekTitleType,CGFloat *weekFontSize,UIColor **weekTitleColor,NSArray ** footerTitleArray,CGFloat *footerViewHeight,CGFloat *footerButtonWidth,CGFloat *footerButtonFontSize,UIColor ** footerButtonColor,BOOL *isShowCalendarShadow,BOOL *isAddUpDownGesture,BOOL *isShowSwipeAnimation,BOOL *isOnlyShowCurrentMonth,BOOL *isShowHeaderView,BOOL *isShowFooterView,BOOL *isShowMonthView,BOOL *isShowWeekView,WYSelectType *selectType,void(^*setCustomCellBlock)(UICollectionViewCell *cell,NSDate * date)))BaseSettingBlock;
 
 /**
  头部视图设置,在这里选择性地设置头部视图中的属性

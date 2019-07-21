@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "WYCalendarView.h"
+#define ScreenWidth     [[UIScreen mainScreen] bounds].size.width   //屏幕宽度
+#define UIColorFromRGB(rgbValue)    [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0] //rgb颜色
 @interface ViewController ()
 
 @end
@@ -28,67 +30,66 @@
     
     self.title = [NSString stringWithFormat:@"%zd年%zd月",[NSDate date].dateYear,[NSDate date].dateMonth];
     
-    WYCalendarView * view =  [WYCalendarView calenderViewWithCalenderFrame:CGRectMake(0, 64, self.view.frame.size.width, 0) selectDateArray:nil confirmBlock:^(NSArray<WYCalendarModel *> *selectArray) {
-      
-    
+    WYCalendarView * view =  [WYCalendarView calenderViewWithCalenderFrame:CGRectMake(40, 100 + 20, ScreenWidth - 80, 0) selectDateArray:@[[WYCalendarModel modelWithDate:[NSDate date]]] confirmBlock:^(NSArray<WYCalendarModel *> *selectArray) {
+        
+        
     }];
-    [view setUpDisplayStyle:^(__autoreleasing dispatch_block_t *cancelBlock, void (^__autoreleasing *changeMonthBlock)(NSDate *__strong), UIColor *__autoreleasing *backColor, WeekTitleType *weekTitleType, CGFloat *weekFontSize, UIColor **weekTitleColor, NSArray *__autoreleasing *footerTitleArray, CGFloat *footerViewHeight, CGFloat *footerButtonWidth, CGFloat *footerButtonFontSize, UIColor *__autoreleasing *footerButtonColor, BOOL *isShowCalendarShadow, BOOL *isShowSwipeAnimation, BOOL *isOnlyShowCurrentMonth, BOOL *isShowHeaderView, BOOL *isShowFooterView, BOOL *isShowMonthView, BOOL *isShowWeekView, WYSelectType *selectType, void (^__autoreleasing *setCustomCellBlock)(UICollectionViewCell *__strong, NSDate *__strong)) {
+    
+    [view setUpDisplayStyle:^(__autoreleasing dispatch_block_t *cancelBlock, void (^__autoreleasing *changeMonthBlock)(NSDate *__strong), UIColor *__autoreleasing *backColor, WeekTitleType *weekTitleType, CGFloat *weekFontSize, UIColor *__autoreleasing *weekTitleColor, NSArray *__autoreleasing *footerTitleArray, CGFloat *footerViewHeight, CGFloat *footerButtonWidth, CGFloat *footerButtonFontSize, UIColor *__autoreleasing *footerButtonColor, BOOL *isShowCalendarShadow, BOOL *isAddUpDownGesture, BOOL *isShowSwipeAnimation, BOOL *isOnlyShowCurrentMonth, BOOL *isShowHeaderView, BOOL *isShowFooterView, BOOL *isShowMonthView, BOOL *isShowWeekView, WYSelectType *selectType, void (^__autoreleasing *setCustomCellBlock)(UICollectionViewCell *__strong, NSDate *__strong)) {
+        
+        *isAddUpDownGesture = NO;
         
         *backColor = [UIColor whiteColor];
         
-        *weekFontSize = 14;
+        *weekFontSize = 12;
         
         *weekTitleColor = WYUIColorFromRGB(0x333333);
         
         *selectType = WYSelectTypeOne;
         
-        *isShowHeaderView = NO;
-        
-        *isShowFooterView = NO;
-        
-        *isShowCalendarShadow = NO;
-        
         *weekTitleType = WeekTitleTypeChineseShort;
         
-        *isShowMonthView = YES;
+        *footerButtonWidth = ScreenWidth/3;
         
-        *changeMonthBlock = ^(NSDate *monthDate){
-            
-            self.title = [NSString stringWithFormat:@"%zd年%zd月",monthDate.dateYear,monthDate.dateMonth];
-        };
+        *footerViewHeight = 100;
         
-        *setCustomCellBlock = ^(UICollectionViewCell *cell,NSDate * date){
-
-            UIView * tmpView = [cell.contentView viewWithTag:1001];
-
-            if (tmpView) [tmpView removeFromSuperview];
-
-            UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(cell.contentView.frame.size.width/2 - 15, cell.contentView.frame.size.height - 12, 30, 12)];
-
-            label.font = [UIFont systemFontOfSize:8];
-
-            label.text = @"上假";
-
-            label.textColor = [UIColor greenColor];
-
-            label.textAlignment = NSTextAlignmentCenter;
-
-            label.tag = 1001;
-
-            [cell.contentView addSubview:label];
-        };
+        *footerButtonFontSize = 14;
+        
+        *footerButtonColor = UIColorFromRGB(0x3A9AD1);
+    }];
+    
+    [view setUpHeaderStyle:^(NSArray *__autoreleasing *titleArray, WeekTitleType *weekTitleType, BOOL *isEnglishMonth, UIColor *__autoreleasing *backColor, UIColor *__autoreleasing *titleColor, UIColor *__autoreleasing *yearColor, UIColor *__autoreleasing *dayColor, CGFloat *leftSpaceX, CGFloat *topSpaceY, CGFloat *titleHeight, CGFloat *yearHeight, CGFloat *dayHegiht, CGFloat *titleFontSize, CGFloat *yearFontSize, CGFloat *dayFontSize) {
+        
+        
+        *dayFontSize = 14;
+        
+        *weekTitleType = WeekTitleTypeChinese;
+        
+        *isEnglishMonth = NO;
+        
+        *yearFontSize = 14;
+        
+        *yearColor = UIColorFromRGB(0xeeeeee);
+        
+        *backColor = UIColorFromRGB(0x3A9AD1);
     }];
     
     [view setUpDayCellStyle:^(UIColor *__autoreleasing *currentMonthTitleColor, UIColor *__autoreleasing *currentMonthChineseTitleColor, UIColor *__autoreleasing *todayTitleColor, UIColor *__autoreleasing *notCurrentMonthTitleColor, UIColor *__autoreleasing *selectTitleColor, UIColor *__autoreleasing *weekendTitleColor, UIColor *__autoreleasing *selectBackColor, UIColor *__autoreleasing *backColor, UIColor *__autoreleasing *endSelectBackColor, CGFloat *dayFontSize, CGFloat *dayLabelSize, BOOL *showAnimation, BOOL *showChineseDate) {
         
-        *dayFontSize = 17;
+        *currentMonthChineseTitleColor = UIColorFromRGB(0xaaaaaa);
+        
+        *notCurrentMonthTitleColor = UIColorFromRGB(0xcccccc);
+        
+        *selectBackColor = UIColorFromRGB(0x3A9AD1);
+        
+        *dayFontSize = 14;
         
         *currentMonthTitleColor = [UIColor blackColor];
         
-        *dayLabelSize = self.view.frame.size.
-        width/7*0.95;
+        *weekendTitleColor = [UIColor blackColor];
         
-        *weekendTitleColor = [UIColor blueColor];
+        *showChineseDate = NO;
+        
     }];
     
     [self.view addSubview:view];
